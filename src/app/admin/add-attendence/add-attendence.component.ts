@@ -11,12 +11,11 @@ import { ApiService } from 'src/app/api.service';
 export class AddAttendenceComponent implements OnInit {
 
  id:any;
-  present: number = 1;
-  absent: number = 0;
+  present: any;
+  absent: any;
   category_id:string = '';
-  employee_details_id:string = '';
+  // employee_details_id:string = '';
   formdata: any;
-  sDate: any;
   categories: any;
   employee_details: any;
   addattendence: any;
@@ -33,9 +32,7 @@ export class AddAttendenceComponent implements OnInit {
   selectedEmployee: any;
   filteredEmployeeList: any;
   date: any;
-  // radioFun() {
-  //   console.log(this.present);
-  // }
+  
 
   constructor(private api: ApiService, private route: ActivatedRoute) {
 
@@ -91,10 +88,8 @@ export class AddAttendenceComponent implements OnInit {
     this.formdata = new FormGroup({
       id: new FormControl(this.addattendence != null ? this.id : ""),
       category_id: new FormControl(this.addattendence != null ? this.addattendence.category_id : "", Validators.required),
-      employee_details_id: new FormControl(this.addattendence != null ? this.addattendence.employee_details_id : "", Validators.required),
+      // employee_details_id: new FormControl(this.addattendence != null ? this.addattendence.employee_details_id : "", Validators.required),
       name: new FormControl(this.addattendence != null ? this.addattendence.name : "", Validators.required),
-      mobile_no: new FormControl(this.addattendence != null ? this.addattendence.mobile_no : "", Validators.required),
-
       startdate: new FormControl((new Date()).toISOString().substring(0, 10)),
       // enddate:new FormControl((new Date()).toISOString().substring(0, 10)),
       date: new FormControl((new Date()).toISOString().substring(0, 10)),
@@ -103,7 +98,6 @@ export class AddAttendenceComponent implements OnInit {
       absent: new FormControl(this.addattendence != null ? this.addattendence.absent : [0], Validators.required),
       // absent:new FormControl("", Validators.required),
       // present:new FormControl("", Validators.required),
-      attendence: new FormControl(this.addattendence != null ? this.addattendence.attendence : "", Validators.required)
     });
   }
   onOptionsSelected() {
@@ -115,6 +109,7 @@ export class AddAttendenceComponent implements OnInit {
         if (this.selectedValue == filteredEmployeeList.category_id)
           return true;
         
+       
         else
           return false;
 

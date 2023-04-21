@@ -100,10 +100,10 @@
               <tbody>
                 <tr *ngFor="let attendence of filteredEmployeeList; let i = index;">
                   <td>{{ (i + 1) }}</td>
-                  <td>
+                  <td *ngIf="attendence">
 
-                    <!-- <input type="text" [(ngModel)]="attendence.name" formControlName="name" class="form-control" value="{{attendence.name}}"/> -->
-                    {{attendence.name}} 
+                    <input type="text" [(ngModel)]="attendence.name" formControlName="name" class="form-control" value="{{attendence.id}}"/>
+                    <!-- <label  controlName="">{{filteredEmployeeList.name}}</label> -->
                   </td>
                   <td>  
                   <select class="form-control" formControlName="present" >
