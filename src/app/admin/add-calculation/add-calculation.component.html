@@ -1,0 +1,479 @@
+<div class="card" *ngIf="formdata">
+  <div class="card-header">
+    Employee Calculations
+  </div>
+  <div class="card-body">
+
+    <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-12 col-form-label">Calculation Over Time Amount (OT Amount = OT * OT Rate) </label>
+
+          </div>
+        </div>
+      </div>
+      <!-- <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Category</label>
+              <div class="col-sm-9">
+                <select class="form-control" formControlName="category_id">
+                  <option value="">Select Category</option>
+                  <option *ngFor="let category of categories;" value="{{category.id}}">{{ category.name }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+         
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Name</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="name" placeholder="Enter Employee Name" />
+              </div>
+            </div>
+          </div>
+        </div> -->
+      <!-- <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Mobile No.<span class="text-danger">*</span></label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="mobile_no" placeholder="Enter Mobile No." />
+                <span *ngIf="!formdata.controls.mobile_no.valid && formdata.controls.mobile_no.touched"
+                class="text-danger">Please Enter Mobile No.</span><br>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Bank A/C No.<span class="text-danger">*</span>
+              </label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="bank_acno" placeholder="Enter Bank Account No." required />
+                <span *ngIf="!formdata.controls.bank_acno.valid && formdata.controls.bank_acno.touched"
+                class="text-danger">Please Enter Bank Account Number</span><br>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Over Time <span class="text-danger">*</span></label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" [(ngModel)]="ot" formControlName="ot"
+                placeholder="Enter Over Time" required />
+              <!-- <span *ngIf="!formdata.controls.hra.valid && formdata.controls.hra.touched"
+                class="text-danger">Please Enter Home Rent Allowance</span><br> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">OT Rate <span class="text-danger">*</span></label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" [(ngModel)]="ot_rate" formControlName="ot_rate"
+                placeholder="Enter Over Time Rate" required />
+              <!-- <span *ngIf="!formdata.controls.conveyance.valid && formdata.controls.conveyance.touched"
+                class="text-danger">Please Enter Conveyance</span><br> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">OT Amount<span class="text-danger">*</span></label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" value="{{ total_ot_amount()}}" [(ngModel)]="ot_amount"
+                formControlName="ot_amount" placeholder="Over Time Amount" required />
+              <!-- <span *ngIf="!formdata.controls.ot_amount.valid && formdata.controls.ot_amount.touched"
+                class="text-danger">Over Time Amount</span><br> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="">
+
+        <h5>Total OT Amount Is : {{ot_amount}}</h5>
+      </div>
+      <hr />
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-12 col-form-label">Calculation PF (PF = basic_salary * 12/100)
+              </label>
+
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Basic Salary <span class="text-danger">*</span></label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" value="{{ basic_salary}}" [(ngModel)]="basic_salary"
+                formControlName="basic_salary" placeholder="Enter Basic Salary" required />
+              <!-- <span *ngIf="!formdata.controls.hra.valid && formdata.controls.hra.touched"
+              class="text-danger">Please Enter Home Rent Allowance</span><br> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">PF <span class="text-danger">*</span></label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" value="{{ total_pf_amount()}}" [(ngModel)]="pf"
+                formControlName="pf" placeholder="PF" required />
+              <!-- <span *ngIf="!formdata.controls.conveyance.valid && formdata.controls.conveyance.touched"
+              class="text-danger">Please Enter Conveyance</span><br> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="">
+
+        <h5>Total PF Is : {{pf}}</h5>
+      </div>
+
+      <hr />
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-12 col-form-label">Calculation Gross Salary (GROSS SALARY = basic_salary + hra_amount + conveyance)
+              </label>
+
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Basic Salary <span class="text-danger">*</span></label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" [(ngModel)]="basic_salary" formControlName="basic_salary"
+                placeholder="Enter Basic Salary" required />
+              <!-- <span *ngIf="!formdata.controls.hra.valid && formdata.controls.hra.touched"
+          class="text-danger">Please Enter Home Rent Allowance</span><br>  -->
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">HRA Amount <span class="text-danger">*</span></label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" [(ngModel)]="hra_amount" formControlName="hra_amount"
+                placeholder="Enter Home Rent Allowance" required />
+              <!-- <span *ngIf="!formdata.controls.conveyance.valid && formdata.controls.conveyance.touched"
+                class="text-danger">Please Enter Conveyance</span><br> -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Conveyance <span class="text-danger">*</span></label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" [(ngModel)]="conveyance" formControlName="conveyance"
+                placeholder="Enter Conveyance" required />
+              <!-- <span *ngIf="!formdata.controls.hra.valid && formdata.controls.hra.touched"
+                class="text-danger">Please Enter Home Rent Allowance</span><br> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Over Time <span class="text-danger">*</span></label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" [(ngModel)]="ot" formControlName="ot"
+                placeholder="Enter Over Time" required />
+              <!-- <span *ngIf="!formdata.controls.conveyance.valid && formdata.controls.conveyance.touched"
+                class="text-danger">Please Enter Conveyance</span><br> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Gross Salary <span class="text-danger">*</span></label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" value="{{ total_gross_salary_amount()}}"
+                [(ngModel)]="gross_salary" formControlName="gross_salary" placeholder="Gross Salary" required />
+              <!-- <span *ngIf="!formdata.controls.conveyance.valid && formdata.controls.conveyance.touched"
+          class="text-danger">Please Enter Conveyance</span><br> -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="">
+
+        <h5>Total Gross Salary Is : {{gross_salary}}</h5>
+
+
+      </div>
+
+      <hr />
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-12 col-form-label">Calculation ESIC (GROSS SALARY / 100 * 0.75) </label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Gross Salary <span class="text-danger">*</span></label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" value="{{ gross_salary}}" [(ngModel)]="gross_salary"
+                formControlName="gross_salary" placeholder="Gross Salary" required />
+              <!-- <span *ngIf="!formdata.controls.hra.valid && formdata.controls.hra.touched"
+              class="text-danger">Please Enter Home Rent Allowance</span><br> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">ESIC <span class="text-danger">*</span></label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" value="{{ total_esic_amount()}}" [(ngModel)]="esic"
+                formControlName="esic" placeholder="ESIC" required />
+              <!-- <span *ngIf="!formdata.controls.conveyance.valid && formdata.controls.conveyance.touched"
+              class="text-danger">Please Enter Conveyance</span><br> -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="">
+
+        <h5>Total ESIC Is : {{esic}}</h5>
+
+
+      </div>
+
+      <hr />
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-6 col-form-label">Calculation PT</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+
+
+        <!-- <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Basic Salary <span class="text-danger">*</span></label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" [(ngModel)]="basic_salary" formControlName="basic_salary"
+                placeholder="Enter Basic Salary" required />
+               <span *ngIf="!formdata.controls.hra.valid && formdata.controls.hra.touched"
+          class="text-danger">Please Enter Home Rent Allowance</span><br>
+            </div>
+          </div>
+        </div> -->
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">PT <span class="text-danger">*</span></label>
+            <div class="col-sm-6">
+                <div *ngIf="basic_salary < 10000;  then thenTemplate;">
+              </div> 
+
+             <ng-template #thenTemplate>
+                <input type="text" class="form-control" [value]="175" value="{{pt1}}" [(ngModel)]="pt1"
+                  formControlName="pt" placeholder="Profession Tax" required /> </ng-template>
+
+              <div *ngIf="basic_salary > 10000;  then elseTemplate;">
+              </div>
+              <ng-template #elseTemplate>
+                <input type="text" class="form-control" [value]="200" value="{{pt}}" [(ngModel)]="pt"
+                  formControlName="pt" placeholder="Profession Tax" required /> </ng-template>
+            <!--<div *ngIf="basic_salary < 10000;  then thenTemplate;">
+              </div>-->
+
+              <!-- <ng-template #thenTemplate>
+                <input type="text" class="form-control" [value]="175" value="{{pt}}" [(ngModel)]="pt"
+                  formControlName="pt1" placeholder="Profession Tax" required /> </ng-template>
+
+              <div *ngIf="basic_salary > 10000;  then elseTemplate;">
+              </div>
+              <ng-template #elseTemplate>
+                <input type="text" class="form-control" [value]="200" value="{{pt}}" [(ngModel)]="pt"
+                  formControlName="pt" placeholder="Profession Tax" required /> </ng-template> -->
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="">
+
+        <h5>Total Profession Tax Is : {{pt}}</h5>
+
+
+      </div>
+
+      <hr />
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-12 col-form-label">Calculation Total Deduction (TOTAL DEDUCTION = PF + ESIC + PT + SALARY ADVANCE)
+              </label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Salary Advance <span class="text-danger">*</span></label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" value="{{ salary_advance}}" [(ngModel)]="salary_advance"
+                formControlName="salary_advance" placeholder="Enter Salary Advance" required />
+              <span *ngIf="!formdata.controls.salary_advance.valid && formdata.controls.salary_advance.touched"
+                class="text-danger">Please Enter Salary Advance</span><br>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Total Deduction <span class="text-danger">*</span></label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" value="{{ total_deduction()}}" [(ngModel)]="deduction"
+                formControlName="deduction" placeholder="Total Deduction" required />
+              <!-- <span *ngIf="!formdata.controls.conveyance.valid && formdata.controls.conveyance.touched"
+              class="text-danger">Please Enter Conveyance</span><br> -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="">
+
+        <h5>Total Deduction Is : {{deduction}}</h5>
+
+
+      </div>
+      <hr/>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-12 col-form-label">Calculation Net Payable Amount (NET PAYABLE AMOUNT = GROSS SALARY - TOTAL DEDUCTION)
+              </label>
+
+          </div>
+        </div>
+      </div>
+  
+
+      <div class="row">
+       <div class="col-md-6">
+        <div class="form-group row">
+          <label class="col-sm-4 col-form-label">Net Payable Amount <span class="text-danger">*</span></label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" value="{{ total_net_payable_amount()}}" [(ngModel)]="net_payable_amount"
+            formControlName="net_payable_amount" placeholder="Total Net Payable Amount" required />
+          </div>
+        </div>
+        </div>
+
+      </div>
+      <div class="">
+
+        <h5>Total Net Payable Amuont Is : {{net_payable_amount}}</h5>
+
+
+      </div>
+
+    <hr/>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group row">
+          <label class="col-sm-4 col-form-label">Date <span class="text-danger">*</span></label>
+          <div class="col-sm-6">
+            <input type="date" class="form-control" [(ngModel)]="start_date" formControlName="start_date"
+             required />
+            <!-- <span *ngIf="!formdata.controls.hra.valid && formdata.controls.hra.touched"
+        class="text-danger">Please Enter Home Rent Allowance</span><br>  -->
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group row">
+          <label class="col-sm-4 col-form-label">Date <span class="text-danger">*</span></label>
+          <div class="col-sm-6">
+            <input type="date" class="form-control" [(ngModel)]="end_date" formControlName="end_date"
+             required />
+            <!-- <span *ngIf="!formdata.controls.conveyance.valid && formdata.controls.conveyance.touched"
+              class="text-danger">Please Enter Conveyance</span><br> -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+     
+      <div class="col-md-6">
+        <div class="form-group row">
+          <label class="col-sm-4 col-form-label">Present<span class="text-danger">*</span></label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" value="{{ calculate_present_days()}}"
+              [(ngModel)]="present" formControlName="present" placeholder="Present Days" required />
+            <!-- <span *ngIf="!formdata.controls.conveyance.valid && formdata.controls.conveyance.touched"
+        class="text-danger">Please Enter Conveyance</span><br> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group row">
+          <label class="col-sm-4 col-form-label">Absent<span class="text-danger">*</span></label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" value="{{ calculate_absent_days()}}" placeholder="Absent Days"
+        [(ngModel)]="absent" formControlName="absent" required />
+            <!-- <span *ngIf="!formdata.controls.conveyance.valid && formdata.controls.conveyance.touched"
+        class="text-danger">Please Enter Conveyance</span><br> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="">
+
+      <h5>Total Present Days : {{present}}</h5>
+      <h5>Total Absent Days : {{absent}}</h5>
+
+      <!-- <button (click)="calculate_present_days()" class="btn btn-gradient-primary btn-icon-text">Calculater Present days</button> -->
+
+
+    </div>
+    <hr/>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-gradient-primary btn-icon-text">
+          <i class="mdi mdi-file-check btn-icon-prepend"></i>
+          Save
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+</div>

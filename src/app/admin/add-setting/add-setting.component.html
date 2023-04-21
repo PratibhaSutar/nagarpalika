@@ -1,0 +1,41 @@
+<div class="card">
+    <div class="card-header">
+      Over Time
+    </div>
+    <div class="card-body">
+     
+      <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
+        <div class="row">
+          <input type="hidden" name="id" value="" />    
+       </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">OT Rate</label>
+              <div class="col-sm-9">
+                
+              <input type="text" class="form-control" formControlName="ot_rate" placeholder="Enter Over Time Rate"/>
+          <span *ngIf="!formdata.controls.ot_rate.valid && formdata.controls.ot_rate.touched"
+                      class="text-danger">Please Enter Over Time Rate</span><br>
+            </div>
+            </div>
+          </div>
+         
+        </div>
+     
+       
+         <div class="text-center">
+
+  <button type="submit" [disabled]="!formdata.valid" class="btn btn-gradient-primary btn-icon-text">
+      <i class="mdi mdi-file-check btn-icon-prepend"></i>
+      Save
+    </button>
+  </div>
+  
+      </form>
+          
+          
+      </div>
+    </div>
+
+     

@@ -1,0 +1,147 @@
+<div class="card" *ngIf="formdata">
+  <div class="card-header">
+    Employee
+  </div>
+  <div class="card-body">
+
+    <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Category</label>
+            <div class="col-sm-9">
+              <select class="form-control" formControlName="category_id">
+                <option value="">Select Category</option>
+                <option *ngFor="let category of categories;" value="{{category.id}}">{{ category.name }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+       
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Name</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" formControlName="name" placeholder="Enter Employee Name" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Mobile No.<span class="text-danger">*</span></label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" ng-pattern="[- +()0-9]{10,12}" autocomplete="off" [ngClass]="{'is-invalid': formdata.controls.mobile_no.errors && (formdata.controls.mobile_no.touched || formdata.controls.mobile_no.dirty), 'is-valid':formdata.controls.mobile_no.valid}" formControlName="mobile_no" placeholder="Enter Mobile No." required />
+              <span *ngIf="!formdata.controls.mobile_no.valid && formdata.controls.mobile_no.touched"
+              class="text-danger"></span>
+              <!-- <div *ngIf="(!formdata.controls.mobile_no.invalid ) || (!formdata.controls.mobile_no.invalid && (!formdata.controls.mobile_no.dirty || !formdata.controls.mobile_no.touched))"
+              class="invalid-feedback">
+              <div *ngIf="!formdata.controls.mobile_no.errors.required">This field is required.</div>
+              <div *ngIf="!formdata.controls.mobile_no.errors.pattern">Invalid phone number.</div><br>
+              </div> -->
+              </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Bank A/C No.<span class="text-danger">*</span>
+            </label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" formControlName="bank_acno" placeholder="Enter Bank Account No." required />
+              <span *ngIf="!formdata.controls.bank_acno.valid && formdata.controls.bank_acno.touched"
+              class="text-danger">Please Enter Bank Account Number</span><br>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">IFSC Code<span class="text-danger">*</span></label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" formControlName="ifsc_code" placeholder="Enter Indian Financial System Code" required />
+              <span *ngIf="!formdata.controls.ifsc_code.valid && formdata.controls.ifsc_code.touched"
+              class="text-danger">Please Enter Indian Financial System Code</span><br>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">UAN No.<span class="text-danger">*</span></label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" formControlName="uan_no" placeholder="Enter Universal Account No."  required />
+              <span *ngIf="!formdata.controls.uan_no.valid && formdata.controls.uan_no.touched"
+              class="text-danger">Please Enter Universal Account Number</span><br>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">ESIC/IC No.<span class="text-danger">*</span></label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" formControlName="esic_icno" placeholder="Enter Employee State Insurance Corporation No." required />
+              <span *ngIf="!formdata.controls.esic_icno.valid && formdata.controls.esic_icno.touched"
+              class="text-danger"></span><br>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Basic Salary<span class="text-danger">*</span></label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" formControlName="basic_salary" placeholder="Enter Basic Salary" required/>
+              <span *ngIf="!formdata.controls.basic_salary.valid && formdata.controls.basic_salary.touched"
+              class="text-danger"></span><br>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">HRA <span class="text-danger">*</span></label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" formControlName="hra" placeholder="Enter Home Rent Allowance" required />
+              <span *ngIf="!formdata.controls.hra.valid && formdata.controls.hra.touched"
+              class="text-danger"></span><br>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Conveyance <span class="text-danger">*</span></label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" formControlName="conveyance" placeholder="Enter Conveyance" required/>
+              <span *ngIf="!formdata.controls.conveyance.valid && formdata.controls.conveyance.touched"
+              class="text-danger"></span><br>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Address</label>
+            <div class="col-sm-9">
+              <textarea rows="2" class="form-control" formControlName="address" placeholder="Enter Address" required></textarea>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="text-center">
+
+        <button type="submit" class="btn btn-gradient-primary btn-icon-text">
+          <i class="mdi mdi-file-check btn-icon-prepend"></i>
+          Save
+        </button>
+      </div>
+    </form>
+
+  </div></div>
+ 

@@ -1,0 +1,87 @@
+<div class="card" *ngIf="formdata">
+    <div class="card-header">
+      Drivers Details
+      <div class="template-demo text-right">
+        <a routerLink="/admin/add-drivers">
+          <button type="button" class=" mb-2 btn btn-gradient-primary btn-icon-text">
+            <!-- <i class="mdi mdi-file-check btn-icon-prepend"></i> -->
+            + Pay Now
+          </button></a>
+        <!-- <a routerLink="/admin/add-employee-details">
+        <button type="button" class="ml-2 mb-2 btn btn-gradient-primary btn-icon-text">
+     <i class="mdi mdi-file-check btn-icon-prepend"></i>  
+       + Add Employee
+     </button></a> -->
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="col-lg-12 row mt-5">
+        <div class="col-lg-3">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search by id">
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search by name">
+          </div>
+        </div>
+  
+        <div class="col-lg-3">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search by category">
+          </div>
+        </div>
+  
+      </div>
+  
+    </div>
+  
+  
+  </div>
+  <hr />
+  <div class="container-fluaid">
+  
+    <div class="col-lg-12">
+  
+  
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Sr No.</th>
+              <th scope="col">Date</th>
+              <th scope="col">Advance Payment</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let driver of drivers  | paginate: { 
+                    itemsPerPage: 5,
+                     currentPage: page,
+                     totalItems:totalLength
+                    };
+                     let i = index;">
+              <td>{{ (i+1) }} </td>
+              <td>{{driver.date | date:'dd/MM/yyyy'}}</td>
+              <td>{{driver.name}}</td>
+
+              <td>{{driver.advance_payment}}</td>
+              <td> <span class="mr-3"><a routerLink="/admin/add-drivers/{{ driver.id }}"
+                    (click)="edit(driver.id)"><span id="boot-icon" class="bi bi-pencil-square bi-hover-bold"
+                      style="color: rgb(0, 0, 0);"></span></a></span>
+  
+  
+                <span><a routerLink="/admin/drivers/{{ driver.id }}" (click)="delete(driver.id)"><span
+                      id="boot-icon" class="bi bi-trash bi-hover-bold" style="color: rgb(255, 0, 0);"></span></a></span>
+              </td>
+            </tr>
+  
+          </tbody>
+        </table>
+        <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  
+      </div>
+    </div>
+  
+  </div>

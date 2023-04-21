@@ -1,0 +1,145 @@
+<div class="card">
+  <div class="card-header">
+    Employee Wages
+  </div>
+  <div class="card-body">
+   
+    <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
+      <div class="row">
+        <input type="hidden" name="id" value=""/>
+
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Category</label>
+                  <div class="col-sm-9">
+                    <select class="form-control" formControlName="category_id">
+                      <option value="">Choose Category</option>
+                      <option *ngFor="let category of categories;" value="{{ category.id }}">{{category.name }}</option>
+                      </select>
+                  </div>
+                </div>
+              </div>
+             
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Employee</label>
+                  <div class="col-sm-9">
+                    <select class="form-control" formControlName="employee_details_id">
+                      <option value="">Choose Employee</option>
+                      <option *ngFor="let employee_detail of employee_details;" value="{{ employee_detail.id }}">{{ employee_detail.name }}</option>
+                      </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+          <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">P.D<span class="text-danger">*</span></label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" formControlName="pd" placeholder="Enter Present Days"/>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">OT<span class="text-danger">*</span></label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" formControlName="ot" placeholder="Enter Over Time" required/>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">OT Rate <span class="text-danger">*</span></label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" formControlName="ot_rate" placeholder="Enter Overtime Rate" required/>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">OT Amount</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" placeholder="Total Over Time Amount is" formControlName="ot_amount" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Gross Amount<span class="text-danger">*</span></label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" formControlName="gross_amount" placeholder="Enter Gross Amount" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Advance<span class="text-danger">*</span></label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" formControlName="advance" placeholder="Enter Advance Amount" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+           <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">PF</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" formControlName="pf" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Total Deduction</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" formControlName="total_deduction" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          <div class="row">
+              <!-- <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Net Payable</label>
+                  <div class="col-sm-9">
+                   <textarea rows="2" class="form-control"></textarea>
+                  </div>
+                </div>
+              </div> -->
+             <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Remark<span class="text-danger">*</span></label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" formControlName="remark" placeholder="Enter Remark" required />
+                  </div>
+                </div>
+              </div>
+            </div> 
+
+
+
+            
+          
+             <div class="text-center">
+
+      <button type="submit" [disabled]="!formdata.valid" class="btn btn-gradient-primary btn-icon-text">
+          <i class="mdi mdi-file-check btn-icon-prepend"></i>
+          Save
+        </button>
+      </div>
+          </form>
+        
+    </div>
+  </div>
+
+    
+  

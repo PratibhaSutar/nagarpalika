@@ -1,0 +1,121 @@
+<div class="card" *ngIf="formdata">
+  <div class="card-header">
+    Salary
+  </div>
+  <div class="card-body">
+    <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
+      <div class="row">
+              <input type="hidden" name="id" value=""/>
+     <div class="col-md-6">
+
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Category</label>
+            <div class="col-sm-9">
+              <select class="form-control" formControlName="category_id" (change)='onOptionsSelected()'
+              [(ngModel)]="selectedValue">
+                <option value="">Choose Category</option>
+                <option *ngFor="let category of categories;" value="{{ category.id }}">{{category.name }}</option>
+                </select>
+            </div>
+          </div>
+      </div> 
+      <div class="col-md-6">
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Date</label>
+          <div class="col-sm-9">
+            <input type="date" class="form-control" formControlName="date" placeholder="dd/mm/yyyy"/>
+
+          </div>
+        </div>
+      </div>
+    </div> 
+            <div class="row">
+              
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Employee</label>
+                    <div class="col-sm-9">
+                      <select class="form-control" formControlName="employee_details_id">
+                        <option value="">Choose Employee</option>
+                       
+                        <option *ngFor="let employee_detail of filteredEmployeeList;" value="{{ employee_detail.name }}">{{ employee_detail.name }}</option>
+                        </select>
+                    </div>
+                  </div>
+                
+                
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Days<span class="text-danger">*</span></label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" formControlName="days" placeholder="Enter Days" required />
+                    <span *ngIf="!formdata.controls.days.valid && formdata.controls.days.touched"
+              class="text-danger"></span><br>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Salary<span class="text-danger">*</span></label>
+                  <div class="col-sm-6">
+                    <input type="text"  class="form-control" formControlName="salary" placeholder="Enter Basic Salary"/>
+
+                    <span *ngIf="!formdata.controls.salary.valid && formdata.controls.salary.touched"
+                    class="text-danger"></span><br>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Advance Amount
+                    <!-- <span class="text-danger">*</span> -->
+                  </label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" formControlName="advance_amount" placeholder="Enter Advance Amount" required />
+                    <!-- <span *ngIf="!formdata.controls.advance_amount.valid && formdata.controls.advance_amount.touched"
+                    class="text-danger">Please Enter Advance Amount</span><br> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Net Salary<span class="text-danger">*</span></label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" formControlName="net_salary" placeholder="Enter Net Salary" required/>
+                    <span *ngIf="!formdata.controls.net_salary.valid && formdata.controls.net_salary.touched"
+                    class="text-danger"></span><br>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Paid Amount
+                    <!-- <span class="text-danger">*</span> -->
+                  </label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" formControlName="paid_amount" placeholder="Enter Paid Amount" />
+                    <!-- <span *ngIf="!formdata.controls.date.valid && formdata.controls.date.touched"
+                    class="text-danger">Please Select Category</span><br> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+             <div class="text-center">
+
+      <button type="submit" [disabled]="!formdata.valid" class="btn btn-gradient-primary btn-icon-text">
+          <i class="mdi mdi-file-check btn-icon-prepend"></i>
+          Save
+        </button>
+      </div>
+          </form>
+        
+    </div>
+  </div>
+
+  

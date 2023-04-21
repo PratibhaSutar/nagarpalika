@@ -1,0 +1,61 @@
+<div class="card">
+  <div class="card-header">
+    Setting Details
+    <div class="template-demo text-right">
+      <a routerLink="/admin/add-setting">
+        <button type="button" class=" mb-2 btn btn-gradient-primary btn-icon-text">
+          <!-- <i class="mdi mdi-file-check btn-icon-prepend"></i> -->
+          + Over Time
+        </button></a>
+      <!-- <a routerLink="/admin/add-employee-details">
+        <button type="button" class="ml-2 mb-2 btn btn-gradient-primary btn-icon-text">
+     <i class="mdi mdi-file-check btn-icon-prepend"></i>  
+       + Add Employee
+     </button></a> -->
+    </div>
+  </div>
+
+</div>
+<br />
+
+<div class="container-fluaid">
+  <div class="col-lg-12">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Sr No.</th>
+            <th scope="col">Over Time Rate</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let setting of settings | paginate: { 
+                  itemsPerPage: 5,
+                   currentPage: page,
+                   totalItems:totalLength
+                  };
+                   let i = index;">
+            <td>{{ (i + 1) }}</td>
+            <td>{{ setting.ot_rate}}</td>
+          
+<td>
+  <span class="mr-3"><a routerLink="/admin/add-category/{{ setting.id }}"><span id="boot-icon"
+    class="bi bi-pencil-square bi-hover-bold" style="color: rgb(0, 0, 0);"></span></a></span>
+                    <span><a (click)="delete(setting.id)" routerLink="/admin/setting/{{ setting.id }}"><span id="boot-icon"
+                      class="bi bi-trash bi-hover-bold" style="color: rgb(255, 0, 0);"></span></a></span>
+            </td>
+            
+
+
+                        
+
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls (pageChange)="page = $event"></pagination-controls>
+
+    </div>
+  </div>
+
+</div>

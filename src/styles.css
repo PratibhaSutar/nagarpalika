@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+.bi-hover-bold:hover{
+    -webkit-text-stroke: 1px;
+}
+.button
+{
+    background-color: navy;
+}
+
+*{
+    font-family: 'Times New Roman', Times, serif;
+}
+.is-invalid{
+    border-color: red;
+}
+
+.is-valid{
+    border-color: blue;
+
+}
