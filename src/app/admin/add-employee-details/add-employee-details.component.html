@@ -22,7 +22,14 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">Name</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" formControlName="name" placeholder="Enter Employee Name" />
+              <input [ngClass]="{'is-invalid': formdata.controls.name.errors && (formdata.controls.name.touched || formdata.controls.name.dirty), 'is-valid':formdata.controls.name.valid}" type="tel"
+              class="form-control" placeholder="Enter Employee Name." formControlName="name" />
+            <div
+              *ngIf="(formdata.controls.name.invalid && formdata.controls.name.touched) || formdata.controls.name.dirty">
+              <small *ngIf="formdata.controls.name.errors?.required" class="text-danger">Employee Name is required</small>
+              <small *ngIf="formdata.controls.name.errors?.pattern" class="text-danger">Please provide a valid Name.
+      </small>
+            </div> 
             </div>
           </div>
         </div>
@@ -32,14 +39,17 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">Mobile No.<span class="text-danger">*</span></label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" ng-pattern="[- +()0-9]{10,12}" autocomplete="off" [ngClass]="{'is-invalid': formdata.controls.mobile_no.errors && (formdata.controls.mobile_no.touched || formdata.controls.mobile_no.dirty), 'is-valid':formdata.controls.mobile_no.valid}" formControlName="mobile_no" placeholder="Enter Mobile No." required />
+              <!-- <input type="text" class="form-control" ng-pattern="[- +()0-9]{10,12}" autocomplete="off" [ngClass]="{'is-invalid': formdata.controls.mobile_no.errors && (formdata.controls.mobile_no.touched || formdata.controls.mobile_no.dirty), 'is-valid':formdata.controls.mobile_no.valid}" formControlName="mobile_no" placeholder="Enter Mobile No." required />
               <span *ngIf="!formdata.controls.mobile_no.valid && formdata.controls.mobile_no.touched"
-              class="text-danger"></span>
-              <!-- <div *ngIf="(!formdata.controls.mobile_no.invalid ) || (!formdata.controls.mobile_no.invalid && (!formdata.controls.mobile_no.dirty || !formdata.controls.mobile_no.touched))"
-              class="invalid-feedback">
-              <div *ngIf="!formdata.controls.mobile_no.errors.required">This field is required.</div>
-              <div *ngIf="!formdata.controls.mobile_no.errors.pattern">Invalid phone number.</div><br>
-              </div> -->
+              class="text-danger"></span> -->
+              <input [ngClass]="{'is-invalid': formdata.controls.mobile_no.errors && (formdata.controls.mobile_no.touched || formdata.controls.mobile_no.dirty), 'is-valid':formdata.controls.mobile_no.valid}" type="tel"
+              class="form-control" placeholder="Enter Mobile No." formControlName="mobile_no" />
+            <div
+              *ngIf="(formdata.controls.mobile_no.invalid && formdata.controls.mobile_no.touched) || formdata.controls.mobile_no.dirty">
+              <small *ngIf="formdata.controls.mobile_no.errors?.required" class="text-danger">Mobile No. is required</small>
+              <small *ngIf="formdata.controls.mobile_no.errors?.pattern" class="text-danger">Provide Valid Mobile No.
+      </small>
+            </div>             
               </div>
           </div>
         </div>
@@ -48,9 +58,18 @@
             <label class="col-sm-3 col-form-label">Bank A/C No.<span class="text-danger">*</span>
             </label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" formControlName="bank_acno" placeholder="Enter Bank Account No." required />
+              <!-- <input type="text" class="form-control" formControlName="bank_acno" placeholder="Enter Bank Account No." required />
               <span *ngIf="!formdata.controls.bank_acno.valid && formdata.controls.bank_acno.touched"
               class="text-danger">Please Enter Bank Account Number</span><br>
+             -->
+             <input [ngClass]="{'is-invalid': formdata.controls.bank_acno.errors && (formdata.controls.bank_acno.touched || formdata.controls.bank_acno.dirty), 'is-valid':formdata.controls.bank_acno.valid}" type="number"
+             class="form-control" placeholder="Enter Bank Account No." formControlName="bank_acno" />
+           <div
+             *ngIf="(formdata.controls.bank_acno.invalid && formdata.controls.bank_acno.touched) || formdata.controls.bank_acno.dirty">
+             <small *ngIf="formdata.controls.bank_acno.errors?.required" class="text-danger">Bank Account No. is required</small>
+             <small *ngIf="formdata.controls.bank_acno.errors?.pattern" class="text-danger">Provide Valid Bank Account No.
+    </small>
+           </div>  
             </div>
           </div>
         </div>
@@ -60,9 +79,21 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">IFSC Code<span class="text-danger">*</span></label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" formControlName="ifsc_code" placeholder="Enter Indian Financial System Code" required />
+              <!-- <input type="text" class="form-control" formControlName="ifsc_code" placeholder="Enter Indian Financial System Code" required />
               <span *ngIf="!formdata.controls.ifsc_code.valid && formdata.controls.ifsc_code.touched"
-              class="text-danger">Please Enter Indian Financial System Code</span><br>
+              class="text-danger">Please Enter Indian Financial System Code</span><br> -->
+              <!-- It should be 11 characters long.
+              The first four characters should be upper case alphabets.
+              The fifth character should be 0.
+              The last six characters are usually numeric, but can also be alphabetic. -->
+              <input [ngClass]="{'is-invalid': formdata.controls.ifsc_code.errors && (formdata.controls.ifsc_code.touched || formdata.controls.ifsc_code.dirty), 'is-valid':formdata.controls.ifsc_code.valid}" type="text"
+              class="form-control" placeholder="Enter IFSC Code" formControlName="ifsc_code" />
+            <div
+              *ngIf="(formdata.controls.ifsc_code.invalid && formdata.controls.ifsc_code.touched) || formdata.controls.ifsc_code.dirty">
+              <small *ngIf="formdata.controls.ifsc_code.errors?.required" class="text-danger">IFSC Code is required</small>
+              <small *ngIf="formdata.controls.ifsc_code.errors?.pattern" class="text-danger">Provide Valid IFSC Code.
+      </small>
+            </div> 
             </div>
           </div>
         </div>
@@ -70,9 +101,17 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">UAN No.<span class="text-danger">*</span></label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" formControlName="uan_no" placeholder="Enter Universal Account No."  required />
+              <!-- <input type="text" class="form-control" formControlName="uan_no" placeholder="Enter Universal Account No."  required />
               <span *ngIf="!formdata.controls.uan_no.valid && formdata.controls.uan_no.touched"
-              class="text-danger">Please Enter Universal Account Number</span><br>
+              class="text-danger">Please Enter Universal Account Number</span><br> -->
+              <input [ngClass]="{'is-invalid': formdata.controls.uan_no.errors && (formdata.controls.uan_no.touched || formdata.controls.uan_no.dirty), 'is-valid':formdata.controls.uan_no.valid}" type="tel"
+              class="form-control" placeholder="Enter UAN No." formControlName="uan_no" />
+            <div
+              *ngIf="(formdata.controls.uan_no.invalid && formdata.controls.uan_no.touched) || formdata.controls.uan_no.dirty">
+              <small *ngIf="formdata.controls.uan_no.errors?.required" class="text-danger">UAN No. is required</small>
+              <small *ngIf="formdata.controls.uan_no.errors?.pattern" class="text-danger">Provide Valid UAN No.
+      </small>
+            </div> 
             </div>
           </div>
         </div>
@@ -136,7 +175,7 @@
 
       <div class="text-center">
 
-        <button type="submit" class="btn btn-gradient-primary btn-icon-text">
+        <button type="submit" [disabled]="!formdata.valid" class="btn btn-gradient-primary btn-icon-text">
           <i class="mdi mdi-file-check btn-icon-prepend"></i>
           Save
         </button>
