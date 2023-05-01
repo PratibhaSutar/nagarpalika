@@ -49,9 +49,11 @@
       <div class="col-lg-4">
         <div class="form-group">
           <!-- <input type="button" class="form-control" name="search" value="Search" (click)="onDateSelected()"> -->
-          <button  class="form-control" (click)="onDateSelected()">
+          <!-- <button  class="form-control" (click)="onDateSelected()"> -->
+                      <button  class="form-control">
+
             <i class="bi bi-search"></i> Search
-        </button>
+ </button>
         </div>
       </div>
     </div>
@@ -66,7 +68,9 @@
 
   <div class="col-lg-12">
 
-    <div *ngIf="show" class="table-responsive">
+    <!-- <div *ngIf="show" class="table-responsive"> -->
+          <div  class="table-responsive">
+
       <table class="table table-hover">
         <thead class="thead-light">
           <tr>
@@ -77,11 +81,11 @@
             <th scope="col">Absent</th>
 
 
-            <th scope="col">Action</th>
+            <!-- <th scope="col">Action</th> -->
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let attendence of filterAttendence | filter:searchId |filter:searchName| filter:searchMobile| paginate: { 
+          <tr *ngFor="let attendence of filterAttendence | filter:searchId |filter:searchName| filter:searchCategory | filter:searchMobile| paginate: { 
                   itemsPerPage: 5,
                    currentPage: page,
                    totalItems:totalLength
@@ -94,7 +98,7 @@
             <td>{{ attendence.present }}</td>
             <td>{{ attendence.absent }}</td>
 
-            <td> <span class="mr-3"><a routerLink="/admin/add-attendence/{{ attendence.id }}"
+            <!-- <td> <span class="mr-3"><a routerLink="/admin/add-attendence/{{ attendence.id }}"
                   (click)="edit(attendence.id)"><span id="boot-icon" class="bi bi-pencil-square bi-hover-bold"
                     style="color: rgb(0, 0, 0);"></span></a></span>
 
@@ -102,22 +106,17 @@
 
               <span><a routerLink="/admin/attendence/{{ attendence.id }}" (click)="delete(attendence.id)"><span
                     id="boot-icon" class="bi bi-trash bi-hover-bold" style="color: rgb(255, 0, 0);"></span></a></span>
-            </td>
+            </td> -->
           </tr>
-          <!-- <tr> -->
-          <!-- <td></td>
-                    
-                    <td></td><td><b>Present Days : {{attendence}}</b></td>   
-                                     <td><b>Absent Days : {{absent}}</b></td>
+          <tr >  
+            <td colspan="2"></td>  
+            <td colspan="1"><b>Total Present:</b> </td>  
+            <td colspan="1"><b>Total Absent:</b> </td>  
 
-<td></td> -->
-
-          <!-- </tr> -->
+            <td colspan="1" ><b>{{present}}</b> </td>  
+          </tr>
         </tbody>
       </table>
-
-
-
       <pagination-controls (pageChange)="page = $event"></pagination-controls>
     </div>
   </div>

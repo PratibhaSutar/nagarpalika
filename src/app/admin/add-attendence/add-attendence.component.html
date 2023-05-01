@@ -17,68 +17,20 @@
             </div>
           </div>
         </div>
-         <!-- <div class="col-md-6">
-          <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Employee</label>
-            <div class="col-sm-9">
-              <select class="form-control" formControlName="name">
-                <option value="">Choose Employee</option>
-                <option *ngFor="let attendence of filteredEmployeeList;" value="{{ attendence.name }}">{{
-                  attendence.name }}</option>
-              </select>
-            </div> 
-          </div>
-        </div> -->
-        <!-- <div class="col-md-6">
-          <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Mobile No.<span class="text-danger">*</span></label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" formControlName="mobile_no" placeholder="Enter Mobile No." />
-              <span *ngIf="!formdata.controls.mobile_no.valid && formdata.controls.mobile_no.touched"
-                class="text-danger"></span><br>
-            </div>
-          </div>
-        </div> -->
-         <!-- for(textfield = 0; textfield <= 4; textfield ++)
-{
-
-} --> 
         <div class="col-md-6">
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">Date</label>
             <div class="col-sm-9">
-              <input type="date" class="form-control" formControlName="startdate" [(ngModel)]="startdate" placeholder="dd/mm/yyyy" />
+              <input type="date" class="form-control" name="startdate" formControlName="startdate" placeholder="dd/mm/yyyy" />
             </div>
           </div>
         </div>
-
-        <!-- <div class="col-md-6">
-          <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Date</label>
-            <div class="col-sm-9">
-              <input type="date" class="form-control" formControlName="startdate" [(ngModel)]="startdate"
-                placeholder="dd/mm/yyyy" />
-            </div>
-          </div>
-        </div> -->
-        <!-- <div class="col-md-6">
-          <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Date</label>
-            <div class="col-sm-9">
-              <input type="date" class="form-control" formControlName="enddate" [(ngModel)]="enddate"
-                placeholder="dd/mm/yyyy" />
-            </div>
-          </div>
-        </div> -->
         <div class="col-md-6">
           <div class="form-group row">
             <label class="col-sm-3 col-form-label"></label>
             <div class="col-sm-9">
               <input type="button" class="form-control" name="search" value="Search" (click)="onOptionsSelected()"/>
               
-              <!-- <button class="form-control">
-                <i class="bi bi-search"></i> Search 
-   </button>  -->
 
             </div>
           </div>
@@ -93,23 +45,20 @@
                 <tr>
                   <th scope="col">Sr No.</th>
                   <th scope="col">Name</th>
-                  <!-- <th scope="col">Date</th> -->
                   <th scope="col">Present/Absent</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let attendence of filteredEmployeeList; let i = index;">
                                     <td>{{ (i + 1) }}</td>
-                  <td>
-                    <!-- <input type="text" [(ngModel)]="attendence.name" formControlName="name" class="form-control" value="{{attendence.id}}"/> -->
-{{attendence.name}}                  </td>
+                  <td> {{attendence.name }}                  </td>
                   <td>  
-                  <select class="form-control" [(ngModel)]="filteredEmployeeList[i].present" [ngModelOptions]="{standalone: true}">
-                      <option selected [value]=1>Present</option>
+                   <select class="form-control" [(ngModel)]="filteredEmployeeList[i].present" [ngModelOptions]="{standalone: true}" >
+  
+                    <option selected [value]=1>Present</option>
                       <option [value]=0>Absent</option>
                     </select>
                   </td>
-                  
                 </tr>
               </tbody>
             </table>

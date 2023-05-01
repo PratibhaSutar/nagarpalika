@@ -120,7 +120,11 @@ this.bind();
   }
 
   bind(){
-    this.formdata = new FormGroup({
+    debugger
+    this.api.get("salary/list").subscribe((result: any) => {
+      console.log(result);
+      this.addsalary = result.data;
+    });    this.formdata = new FormGroup({
       id:new FormControl(this.addsalary != null ? this.id : "" ),
     category_id:new FormControl(this.addsalary != null ? this.addsalary.category_id : "" , Validators.required),
       employee_details_id:new FormControl(this.addsalary != null ? this.addsalary.employee_details_id: "" , Validators.required),
@@ -134,17 +138,18 @@ this.bind();
     });
   }
   onOptionsSelected() {
-
     this.api.get("employee_details/list").subscribe((result: any) => {
       this.filteredEmployeeList = result.data;
       this.filteredEmployeeList = this.filteredEmployeeList.filter((filteredEmployeeList: any) => {
+      
 
         if (this.selectedValue == filteredEmployeeList.category_id)
-
-          return true;
-        else
-          return false;
+        
+          return filteredEmployeeList;        
       });
+      console.log(this.filteredEmployeeList);
+      this.addsalary = result;
+      console.log(result);
 
         // let startDate = +new Date(this.startdate);
         // let endDate = +new Date(this.enddate);
@@ -157,6 +162,7 @@ this.bind();
     
     });
   }
+  
 onClickSubmit(data:any){
 
   this.api.put("salary/save", data).subscribe((result:any)=>{

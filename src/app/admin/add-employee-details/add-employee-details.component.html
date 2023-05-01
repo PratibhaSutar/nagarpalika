@@ -47,8 +47,8 @@
             <div
               *ngIf="(formdata.controls.mobile_no.invalid && formdata.controls.mobile_no.touched) || formdata.controls.mobile_no.dirty">
               <small *ngIf="formdata.controls.mobile_no.errors?.required" class="text-danger">Mobile No. is required</small>
-              <small *ngIf="formdata.controls.mobile_no.errors?.pattern" class="text-danger">Provide Valid Mobile No.
-      </small>
+              <!-- <small *ngIf="formdata.controls.mobile_no.errors?.pattern" class="text-danger">Provide Valid Mobile No. -->
+      <!-- </small> -->
             </div>             
               </div>
           </div>
@@ -79,21 +79,15 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">IFSC Code<span class="text-danger">*</span></label>
             <div class="col-sm-9">
-              <!-- <input type="text" class="form-control" formControlName="ifsc_code" placeholder="Enter Indian Financial System Code" required />
-              <span *ngIf="!formdata.controls.ifsc_code.valid && formdata.controls.ifsc_code.touched"
-              class="text-danger">Please Enter Indian Financial System Code</span><br> -->
-              <!-- It should be 11 characters long.
-              The first four characters should be upper case alphabets.
-              The fifth character should be 0.
-              The last six characters are usually numeric, but can also be alphabetic. -->
+            
               <input [ngClass]="{'is-invalid': formdata.controls.ifsc_code.errors && (formdata.controls.ifsc_code.touched || formdata.controls.ifsc_code.dirty), 'is-valid':formdata.controls.ifsc_code.valid}" type="text"
               class="form-control" placeholder="Enter IFSC Code" formControlName="ifsc_code" />
-            <div
+            <!-- <div>
               *ngIf="(formdata.controls.ifsc_code.invalid && formdata.controls.ifsc_code.touched) || formdata.controls.ifsc_code.dirty">
               <small *ngIf="formdata.controls.ifsc_code.errors?.required" class="text-danger">IFSC Code is required</small>
               <small *ngIf="formdata.controls.ifsc_code.errors?.pattern" class="text-danger">Provide Valid IFSC Code.
       </small>
-            </div> 
+            </div>  -->
             </div>
           </div>
         </div>
