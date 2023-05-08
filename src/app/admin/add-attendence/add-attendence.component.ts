@@ -10,7 +10,6 @@ import { ApiService } from 'src/app/api.service';
   styleUrls: ['./add-attendence.component.css']
 })
 export class AddAttendenceComponent implements OnInit {
-
   id: any;
   present: any;
   absent: any;
@@ -24,7 +23,8 @@ export class AddAttendenceComponent implements OnInit {
   startdate: any;
   enddate: any;
   filteredAttendence: any;
-  //show:boolean = false;
+
+  show:boolean = false;
   totalLength: any;
   page: number = 1;
   selectedValue: any;
@@ -68,8 +68,6 @@ export class AddAttendenceComponent implements OnInit {
 
   }
   bind() {
-
-
     this.api.get("attendences/list").subscribe((result: any) => {
       console.log(result);
       this.addattendence = result.data;
@@ -80,15 +78,14 @@ export class AddAttendenceComponent implements OnInit {
       category_id: new FormControl(this.addattendence != null ? this.addattendence.category_id : "", Validators.required),
       name: new FormControl(this.addattendence != null ? this.addattendence.name : "", Validators.required),
       startdate: new FormControl((new Date()).toISOString().substring(0, 10)),
-
-      present: new FormControl(this.addattendence != null ? this.addattendence.present : [1], Validators.required),
-      absent: new FormControl(this.addattendence != null ? this.addattendence.absent : [0], Validators.required),
+      present: new FormControl(this.addattendence != null ? this.addattendence.present : "", Validators.required),
+      absent: new FormControl(this.addattendence != null ? this.addattendence.absent : "", Validators.required),
       // absent:new FormControl("", Validators.required),
       // present:new FormControl("", Validators.required),
     });
   }
   onOptionsSelected() {
-
+debugger
     this.api.get("employee_details/list").subscribe((result: any) => {
       this.filteredEmployeeList = result.data;
       this.filteredEmployeeList = this.filteredEmployeeList.filter((filteredEmployeeList: any) => {
@@ -96,10 +93,12 @@ export class AddAttendenceComponent implements OnInit {
         filteredEmployeeList["absent"] = 0;
 
         filteredEmployeeList["startdate"] = new Date();
+
         if (this.selectedValue == filteredEmployeeList.category_id)
-        
+
           return filteredEmployeeList;        
       });
+
       console.log(this.filteredEmployeeList);
       
     //let startDate = +new Date(this.startdate);
@@ -118,11 +117,16 @@ export class AddAttendenceComponent implements OnInit {
 
       this.filteredAttendence = result;
       console.log(result);
-      //this.show = !this.show;
+      this.show = !this.show;
 
     });
+
   }
-  
+  // tableShow() {
+
+  //   this.isShown = ! this.isShown;
+    
+  //   }
   
 // onDateSelected(){
 //   this.date = Date.now();
@@ -144,23 +148,18 @@ export class AddAttendenceComponent implements OnInit {
   //}
 
   onClickSubmit(data: any) {
-    debugger
   console.log(this.filteredEmployeeList);
-  
-//console.log(this.startdate);
    for(let i = 0; i < this.filteredEmployeeList.length;i++){
-    
      console.log(this.filteredEmployeeList.length)
   this.api.put("attendences/save", this.filteredEmployeeList[i]).subscribe((result: any) => {
-    // this.api.put("attendences/save",data).subscribe((result: any) => {
-
-              
-          
+    // this.api.put("attendences/save",data).subscribe((result: any) => {   
   console.log(result.data);
+  window.location.replace("/admin/attendence");
 
   });
+
    }
+
     }
-   // window.location.replace("/admin/attendence");
 
   }

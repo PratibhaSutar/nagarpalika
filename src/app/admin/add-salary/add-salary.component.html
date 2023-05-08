@@ -11,8 +11,8 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">Category</label>
             <div class="col-sm-9">
-              <select class="form-control" formControlName="category_id" (change)='onOptionsSelected()'
-              [(ngModel)]="selectedValue">
+              <select class="form-control" formControlName="category_id" (change)='onCategorySelected()'
+              [(ngModel)]="selectedValueCategory">
                 <option value="">Choose Category</option>
                 <option *ngFor="let category of categories;" value="{{ category.id }}">{{category.name }}</option>
                 </select>
@@ -35,10 +35,11 @@
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Employee</label>
                     <div class="col-sm-9">
-                      <select class="form-control" formControlName="employee_details_id" >
+                      <select class="form-control" formControlName="employee_details_id" (change)='onEmployeeSelected()'
+                      [(ngModel)]="selectedValueEmployee">
                         <option value="">Choose Employee</option>
                        
-                        <option *ngFor="let employee_detail of filteredEmployeeList;" value="{{ employee_detail.id }}">{{ employee_detail.name }}</option>
+                        <option *ngFor="let employee_detail of filteredEmployeeList;"  value="{{ employee_detail.id }}">{{ employee_detail.name }}</option>
                         </select>
                     </div>
                   </div>
@@ -58,10 +59,68 @@
             </div>
             <div class="row">
               <div class="col-md-6">
+                <div class="form-group row" >
+                  <label class="col-sm-3 col-form-label">PF<span class="text-danger">*</span></label>
+                  <div class="col-sm-6" >
+                    <input type="text" value="{{ total_pf_amount()}}" [(ngModel)]="pf"  class="form-control" formControlName="pf" placeholder="Provident Fund" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">PT<span class="text-danger">*</span>
+                  </label>
+                  <div class="col-sm-6">
+                    <div *ngIf="basic_salary < 10000;  then thenTemplate;">
+                  </div> 
+    
+                 <ng-template #thenTemplate>
+                    <input type="text" class="form-control" [value]="175" value="{{pt1}}" [(ngModel)]="pt1"
+                      formControlName="pt" placeholder="Profession Tax" required /> </ng-template>
+    
+                  <div *ngIf="basic_salary > 10000;  then elseTemplate;">
+                  </div>
+                  <ng-template #elseTemplate>
+                    <input type="text" class="form-control" [value]="200" value="{{pt}}" [(ngModel)]="pt"
+                      formControlName="pt" placeholder="Profession Tax" required /> </ng-template>
+                  <!-- <div class="col-sm-6">
+                    <input type="text" class="form-control" formControlName="pt" placeholder="Enter Profession Tax" required />
+                   
+                  </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row" >
+                  <label class="col-sm-3 col-form-label">ESIC<span class="text-danger">*</span></label>
+                  <div class="col-sm-6" >
+                    <input type="text"  class="form-control" formControlName="esic" value="{{ total_esic_amount()}}" [(ngModel)]="esic"
+                    placeholder="ESIC" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
                 <div class="form-group row">
                   <label class="col-sm-3 col-form-label">Salary<span class="text-danger">*</span></label>
-                  <div class="col-sm-6">
-                    <input type="text" class="form-control" formControlName="salary" placeholder="Enter Basic Salary"/>
+                
+                  <div class="col-sm-6" >
+                    <input type="text"  class="form-control" formControlName="salary"  value="{{ onEmployeeSelected()}}"
+                    placeholder="Enter Basic Salary" />                   
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row" >
+                  <label class="col-sm-3 col-form-label">OT<span class="text-danger">*</span></label>
+                  <div class="col-sm-6" >
+                    <input type="text"  class="form-control" formControlName="ot"
+                    placeholder="Enter Over Time" />
+
 
                     <span *ngIf="!formdata.controls.salary.valid && formdata.controls.salary.touched"
                     class="text-danger"></span><br>
@@ -105,10 +164,22 @@
                 </div>
               </div>
             </div>
-      
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Outstanding Amount<span class="text-danger">*</span></label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" formControlName="outstanding_amount" placeholder="Enter Outstanding Amount" required/>
+                    <span *ngIf="!formdata.controls.net_salary.valid && formdata.controls.net_salary.touched"
+                    class="text-danger"></span><br>
+                  </div>
+                </div>
+              </div>
+             
+            </div>
              <div class="text-center">
 
-      <button type="submit" [disabled]="!formdata.valid" class="btn btn-gradient-primary btn-icon-text">
+      <button type="submit" class="btn btn-gradient-primary btn-icon-text">
           <i class="mdi mdi-file-check btn-icon-prepend"></i>
           Save
         </button>

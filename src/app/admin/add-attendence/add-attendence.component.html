@@ -1,4 +1,4 @@
-<div class="card" *ngIf="formdata">
+<div class="card">
   <div class="card-header">
     Attendence
   </div>
@@ -9,8 +9,10 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">Category</label>
             <div class="col-sm-9">
-              <select #mySelect class="form-control" formControlName="category_id" (change)='onOptionsSelected()'
-                [(ngModel)]="selectedValue">
+              <select #mySelect class="form-control" formControlName="category_id" (change)='onOptionsSelected()' [(ngModel)]="selectedValue">
+
+                              <!-- <select #mySelect class="form-control" formControlName="category_id" (change)='onOptionsSelected()' -->
+
                 <option value="">Choose Category</option>
                 <option [value]="category.id" *ngFor="let category of categories;">{{category.name }}</option>
               </select>
@@ -30,16 +32,16 @@
             <label class="col-sm-3 col-form-label"></label>
             <div class="col-sm-9">
               <input type="button" class="form-control" name="search" value="Search" (click)="onOptionsSelected()"/>
-              
-
+            
             </div>
           </div>
         </div>
       </div>
       <hr/>
-      <div class="container-fluaid">
+      <div  class="container-fluaid">
         <div class="col-lg-12">
-          <div class="table-responsive">
+
+          <div  class="table-responsive">
             <table class="table table-hover">
               <thead class="thead-light">
                 <tr>
@@ -72,6 +74,7 @@
           Save
         </button>
       </div>
+     
     </form>
   </div>
 </div>

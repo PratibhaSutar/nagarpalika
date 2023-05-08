@@ -63,7 +63,6 @@ edit(id:string){
         enddate:new FormControl((new Date()).toISOString().substring(0, 10)),
         present:new FormControl("", Validators.required),
         absent:new FormControl("", Validators.required),
-        // attendence:new FormControl("", Validators.required)
   });
     });
    }

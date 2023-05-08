@@ -64,11 +64,11 @@
 
 </div>
 <hr />
-<div class="container-fluaid">
+<!--<div class="container-fluaid">
 
   <div class="col-lg-12">
 
-    <!-- <div *ngIf="show" class="table-responsive"> -->
+    <div *ngIf="show" class="table-responsive"> 
           <div  class="table-responsive">
 
       <table class="table table-hover">
@@ -76,12 +76,10 @@
           <tr>
             <th scope="col">Sr No.</th>
             <th scope="col">Name</th>
-            <!-- <th scope="col">Mobile No.</th> -->
             <th scope="col">Present</th>
             <th scope="col">Absent</th>
 
 
-            <!-- <th scope="col">Action</th> -->
           </tr>
         </thead>
         <tbody>
@@ -93,10 +91,9 @@
                    let i = index;">
             <td>{{ (i+1) }} </td>
             <td>{{attendence.name}}</td>
-            <!-- <td>{{attendence.mobile_no}}</td> -->
 
             <td>{{ attendence.present }}</td>
-            <td>{{ attendence.absent }}</td>
+            <td>{{ attendence.absent }}</td>-->
 
             <!-- <td> <span class="mr-3"><a routerLink="/admin/add-attendence/{{ attendence.id }}"
                   (click)="edit(attendence.id)"><span id="boot-icon" class="bi bi-pencil-square bi-hover-bold"
@@ -107,18 +104,18 @@
               <span><a routerLink="/admin/attendence/{{ attendence.id }}" (click)="delete(attendence.id)"><span
                     id="boot-icon" class="bi bi-trash bi-hover-bold" style="color: rgb(255, 0, 0);"></span></a></span>
             </td> -->
-          </tr>
-          <tr >  
+         <!-- </tr>
+          <!-- <tr >  
             <td colspan="2"></td>  
             <td colspan="1"><b>Total Present:</b> </td>  
             <td colspan="1"><b>Total Absent:</b> </td>  
 
             <td colspan="1" ><b>{{present}}</b> </td>  
-          </tr>
-        </tbody>
+          </tr> -->
+       <!-- </tbody>
       </table>
       <pagination-controls (pageChange)="page = $event"></pagination-controls>
     </div>
   </div>
 
-</div>
+</div>-->

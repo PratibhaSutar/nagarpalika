@@ -10,10 +10,17 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">Category</label>
             <div class="col-sm-9">
-              <select class="form-control" formControlName="category_id">
+              <select  
+               class="form-control" formControlName="category_id">
                 <option value="">Select Category</option>
                 <option *ngFor="let category of categories;" value="{{category.id}}">{{ category.name }}</option>
               </select>
+              <!-- <div
+              *ngIf="(formdata.controls.category_id.invalid && formdata.controls.category_id.touched) || formdata.controls.category_id.dirty">
+              <small *ngIf="formdata.controls.category_id.errors?.required" class="text-danger">P</small>
+              <small *ngIf="formdata.controls.category_id.errors?.pattern" class="text-danger">Invalid Name
+      </small>
+            </div> -->
             </div>
           </div>
         </div>
@@ -23,11 +30,11 @@
             <label class="col-sm-3 col-form-label">Name</label>
             <div class="col-sm-9">
               <input [ngClass]="{'is-invalid': formdata.controls.name.errors && (formdata.controls.name.touched || formdata.controls.name.dirty), 'is-valid':formdata.controls.name.valid}" type="tel"
-              class="form-control" placeholder="Enter Employee Name." formControlName="name" />
+              class="form-control" placeholder="Please Enter Employee Name." formControlName="name" />
             <div
               *ngIf="(formdata.controls.name.invalid && formdata.controls.name.touched) || formdata.controls.name.dirty">
-              <small *ngIf="formdata.controls.name.errors?.required" class="text-danger">Employee Name is required</small>
-              <small *ngIf="formdata.controls.name.errors?.pattern" class="text-danger">Please provide a valid Name.
+              <small *ngIf="formdata.controls.name.errors?.required" class="text-danger"></small>
+              <small *ngIf="formdata.controls.name.errors?.pattern" class="text-danger">Invalid Name
       </small>
             </div> 
             </div>
@@ -39,16 +46,14 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">Mobile No.<span class="text-danger">*</span></label>
             <div class="col-sm-9">
-              <!-- <input type="text" class="form-control" ng-pattern="[- +()0-9]{10,12}" autocomplete="off" [ngClass]="{'is-invalid': formdata.controls.mobile_no.errors && (formdata.controls.mobile_no.touched || formdata.controls.mobile_no.dirty), 'is-valid':formdata.controls.mobile_no.valid}" formControlName="mobile_no" placeholder="Enter Mobile No." required />
-              <span *ngIf="!formdata.controls.mobile_no.valid && formdata.controls.mobile_no.touched"
-              class="text-danger"></span> -->
+        
               <input [ngClass]="{'is-invalid': formdata.controls.mobile_no.errors && (formdata.controls.mobile_no.touched || formdata.controls.mobile_no.dirty), 'is-valid':formdata.controls.mobile_no.valid}" type="tel"
-              class="form-control" placeholder="Enter Mobile No." formControlName="mobile_no" />
+              class="form-control" placeholder="Please Enter Mobile No." formControlName="mobile_no"  maxlength="12"/>
             <div
               *ngIf="(formdata.controls.mobile_no.invalid && formdata.controls.mobile_no.touched) || formdata.controls.mobile_no.dirty">
-              <small *ngIf="formdata.controls.mobile_no.errors?.required" class="text-danger">Mobile No. is required</small>
-              <!-- <small *ngIf="formdata.controls.mobile_no.errors?.pattern" class="text-danger">Provide Valid Mobile No. -->
-      <!-- </small> -->
+              <small *ngIf="formdata.controls.mobile_no.errors?.required" class="text-danger"></small>
+              <small *ngIf="formdata.controls.mobile_no.errors?.pattern" class="text-danger">Invalid Mobile No.
+    </small>
             </div>             
               </div>
           </div>
@@ -58,17 +63,13 @@
             <label class="col-sm-3 col-form-label">Bank A/C No.<span class="text-danger">*</span>
             </label>
             <div class="col-sm-9">
-              <!-- <input type="text" class="form-control" formControlName="bank_acno" placeholder="Enter Bank Account No." required />
-              <span *ngIf="!formdata.controls.bank_acno.valid && formdata.controls.bank_acno.touched"
-              class="text-danger">Please Enter Bank Account Number</span><br>
-             -->
              <input [ngClass]="{'is-invalid': formdata.controls.bank_acno.errors && (formdata.controls.bank_acno.touched || formdata.controls.bank_acno.dirty), 'is-valid':formdata.controls.bank_acno.valid}" type="number"
-             class="form-control" placeholder="Enter Bank Account No." formControlName="bank_acno" />
+             class="form-control" placeholder="Please Enter Bank Account No. (eg.635802010014976)" formControlName="bank_acno" maxlength="15" />
            <div
              *ngIf="(formdata.controls.bank_acno.invalid && formdata.controls.bank_acno.touched) || formdata.controls.bank_acno.dirty">
-             <small *ngIf="formdata.controls.bank_acno.errors?.required" class="text-danger">Bank Account No. is required</small>
-             <small *ngIf="formdata.controls.bank_acno.errors?.pattern" class="text-danger">Provide Valid Bank Account No.
-    </small>
+             <small *ngIf="formdata.controls.bank_acno.errors?.required" class="text-danger"></small>
+             <small *ngIf="formdata.controls.bank_acno.errors?.pattern" class="text-danger"> Invalid Bank Account No.
+            </small>
            </div>  
             </div>
           </div>
@@ -81,13 +82,13 @@
             <div class="col-sm-9">
             
               <input [ngClass]="{'is-invalid': formdata.controls.ifsc_code.errors && (formdata.controls.ifsc_code.touched || formdata.controls.ifsc_code.dirty), 'is-valid':formdata.controls.ifsc_code.valid}" type="text"
-              class="form-control" placeholder="Enter IFSC Code" formControlName="ifsc_code" />
-            <!-- <div>
+              class="form-control" placeholder="Please Enter IFSC Code (eg.SBIN0125620)" formControlName="ifsc_code" />
+           <div
               *ngIf="(formdata.controls.ifsc_code.invalid && formdata.controls.ifsc_code.touched) || formdata.controls.ifsc_code.dirty">
-              <small *ngIf="formdata.controls.ifsc_code.errors?.required" class="text-danger">IFSC Code is required</small>
-              <small *ngIf="formdata.controls.ifsc_code.errors?.pattern" class="text-danger">Provide Valid IFSC Code.
+              <small *ngIf="formdata.controls.ifsc_code.errors?.required" class="text-danger"></small>
+              <small *ngIf="formdata.controls.ifsc_code.errors?.pattern" class="text-danger"> Invalid IFSC Code
       </small>
-            </div>  -->
+            </div>  
             </div>
           </div>
         </div>
@@ -95,15 +96,13 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">UAN No.<span class="text-danger">*</span></label>
             <div class="col-sm-9">
-              <!-- <input type="text" class="form-control" formControlName="uan_no" placeholder="Enter Universal Account No."  required />
-              <span *ngIf="!formdata.controls.uan_no.valid && formdata.controls.uan_no.touched"
-              class="text-danger">Please Enter Universal Account Number</span><br> -->
+          
               <input [ngClass]="{'is-invalid': formdata.controls.uan_no.errors && (formdata.controls.uan_no.touched || formdata.controls.uan_no.dirty), 'is-valid':formdata.controls.uan_no.valid}" type="tel"
-              class="form-control" placeholder="Enter UAN No." formControlName="uan_no" />
+              class="form-control" placeholder="Please Enter UAN No.(eg.100904319456)" formControlName="uan_no" />
             <div
               *ngIf="(formdata.controls.uan_no.invalid && formdata.controls.uan_no.touched) || formdata.controls.uan_no.dirty">
-              <small *ngIf="formdata.controls.uan_no.errors?.required" class="text-danger">UAN No. is required</small>
-              <small *ngIf="formdata.controls.uan_no.errors?.pattern" class="text-danger">Provide Valid UAN No.
+              <small *ngIf="formdata.controls.uan_no.errors?.required" class="text-danger"></small>
+              <small *ngIf="formdata.controls.uan_no.errors?.pattern" class="text-danger">Invalid UAN No.
       </small>
             </div> 
             </div>
@@ -116,17 +115,24 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">ESIC/IC No.<span class="text-danger">*</span></label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" formControlName="esic_icno" placeholder="Enter Employee State Insurance Corporation No." required />
-              <span *ngIf="!formdata.controls.esic_icno.valid && formdata.controls.esic_icno.touched"
-              class="text-danger"></span><br>
-            </div>
-          </div>
+              <input [ngClass]="{'is-invalid': formdata.controls.esic_icno.errors && (formdata.controls.esic_icno.touched || formdata.controls.esic_icno.dirty), 'is-valid':formdata.controls.esic_icno.valid}" type="text"
+              class="form-control" placeholder="Please Enter ESIC/IC No.(eg.31-00-123456-000-0001)"  formControlName="esic_icno" />
+            <div
+              *ngIf="(formdata.controls.esic_icno.invalid && formdata.controls.esic_icno.touched) || formdata.controls.esic_icno.dirty">
+              <small *ngIf="formdata.controls.esic_icno.errors?.required" class="text-danger"></small>
+              <small *ngIf="formdata.controls.esic_icno.errors?.pattern" class="text-danger">Invalid ESIC/IC No.
+      </small>
+            
+        
+        </div>
+        </div>
+        </div>
         </div>
         <div class="col-md-6">
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">Basic Salary<span class="text-danger">*</span></label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" formControlName="basic_salary" placeholder="Enter Basic Salary" required/>
+              <input type="number" class="form-control" formControlName="basic_salary" placeholder="Please Enter Basic Salary" required/>
               <span *ngIf="!formdata.controls.basic_salary.valid && formdata.controls.basic_salary.touched"
               class="text-danger"></span><br>
             </div>
@@ -138,7 +144,7 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">HRA <span class="text-danger">*</span></label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" formControlName="hra" placeholder="Enter Home Rent Allowance" required />
+              <input type="number" class="form-control" formControlName="hra" placeholder="Please Enter Home Rent Allowance" required />
               <span *ngIf="!formdata.controls.hra.valid && formdata.controls.hra.touched"
               class="text-danger"></span><br>
             </div>
@@ -148,7 +154,7 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">Conveyance <span class="text-danger">*</span></label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" formControlName="conveyance" placeholder="Enter Conveyance" required/>
+              <input type="number" class="form-control" formControlName="conveyance" placeholder="Please Enter Conveyance" required/>
               <span *ngIf="!formdata.controls.conveyance.valid && formdata.controls.conveyance.touched"
               class="text-danger"></span><br>
             </div>
@@ -169,7 +175,7 @@
 
       <div class="text-center">
 
-        <button type="submit" [disabled]="!formdata.valid" class="btn btn-gradient-primary btn-icon-text">
+        <button type="submit" class="btn btn-gradient-primary btn-icon-text">
           <i class="mdi mdi-file-check btn-icon-prepend"></i>
           Save
         </button>
