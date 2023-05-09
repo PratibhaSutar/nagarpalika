@@ -95,6 +95,9 @@ filteredSalary:any;
 selectedValueCategory:any;
 selectedValueEmployee:any;
 
+details = new Array();
+
+
 gross_salary: number = 0;
 salary: number = 0;
 hra_amount: number = 1000;
@@ -202,18 +205,67 @@ this.bind();
     
       }
 
-      onEmployeeSelected() {
-        debugger
-            this.api.get("employee_details/list").subscribe((result: any) => {
-              this.filteredEmployeeList = result.data;
-              this.filteredEmployeeList = this.filteredEmployeeList.filter((filteredEmployeeList: any) => {
-               
-                if (this.selectedValueEmployee == filteredEmployeeList.id)
+    //  onEmployeeSelected(index:number, key:string, event:any){
+    //     this.details[index][key] = event.target.value;
+
+    //     let hra_amount = 0; 
+    //   var conveyance = 0;
+    //     if(key == "employee_details_id"){
+    //       for(let i = 0; i < this.filteredEmployeeList.length; i++){
+    //         if(this.filteredEmployeeList[i].id === event.target.value)
+    //           this.basic_salary = parseFloat(this.filteredEmployeeList[i].basic_salary);
+    //           this.hra_amount = parseFloat(this.filteredEmployeeList[i].hra_amount);
+    //           this.conveyance = parseFloat(this.filteredEmployeeList[i].conveyance);
+
+    //       }
+    //       this.salary = this.basic_salary * hra_amount + this.conveyance;
+    //       console.log(this.basic_salary);
+    //     }
+    //     this.details[index]["salary"] = this.details[index]["basic_salary"] + this.details[index]["hra_amount"] 
+    //     + this.details[index]["conveyance"];
+    //     this.salary = 0;
+    //     this.details.forEach(detail => {
+    //       this.salary += detail.total;
+    //     });
+    //   }
+
+     onEmployeeSelected(index:number, key:string, event:any) {
+      debugger
+       this.api.get("employee_details/list").subscribe((result: any) => {
+
+          
+
+          this.filteredEmployeeList = result.data;
+        this.filteredEmployeeList[index][key] = event.target.value;
+        this.salary = Number(this.basic_salary) + Number(this.hra_amount) + Number(this.conveyance)
+        -  Number(this.pf) -  Number(this.pt)  -  Number(this.esic);
+    
+        let basic_salary = 0, hra_amount = 0 , conveyance = 0;
+
+    if(key == "employee_details_id"){
+      for(let i = 0; i < this.filteredEmployeeList.length; i++){
+        if(this.filteredEmployeeList[i].id === event.target.value)
+        basic_salary = parseFloat(this.filteredEmployeeList[i].basic_salary);
+        hra_amount = parseFloat(this.filteredEmployeeList[i].hra_amount);
+        conveyance = parseFloat(this.filteredEmployeeList[i].conveyance);
+      }
+      if (this.selectedValueEmployee == this.filteredEmployeeList.id)
       
-                return this.salary = filteredEmployeeList.basic_salary;
+               return this.salary = this.filteredEmployeeList.basic_salary;
 
                        
-              });
+            //   });
+        
+            // this.api.get("employee_details/list").subscribe((result: any) => {
+            //   this.filteredEmployeeList = result.data;
+            //   this.filteredEmployeeList = this.filteredEmployeeList.filter((filteredEmployeeList: any) => {
+               
+            //     if (this.selectedValueEmployee == filteredEmployeeList.id)
+      
+            //     return this.salary = filteredEmployeeList.basic_salary;
+
+                       
+            //   });
         
               console.log(this.filteredEmployeeList);
           
@@ -221,10 +273,10 @@ this.bind();
               this.filteredEmployeeList = result;
               console.log(result);
               //this.show = !this.show;
-        
+    }
             });
         
-          }
+    }
      
   // onOptionsSelected() {
   //   debugger
