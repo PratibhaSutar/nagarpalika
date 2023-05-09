@@ -99,7 +99,7 @@ details = new Array();
 
 
 gross_salary: number = 0;
-salary: number = 0;
+salary: any;
 hra_amount: number = 1000;
 conveyance: number = 500;
 esic: number = 200;
@@ -231,11 +231,8 @@ this.bind();
 
      onEmployeeSelected(index:number, key:string, event:any) {
       debugger
-       this.api.get("employee_details/list").subscribe((result: any) => {
-
-          
-
-          this.filteredEmployeeList = result.data;
+      this.api.get("employee_details/list").subscribe((result: any) => {
+         this.filteredEmployeeList = result.data;
         this.filteredEmployeeList[index][key] = event.target.value;
         this.salary = Number(this.basic_salary) + Number(this.hra_amount) + Number(this.conveyance)
         -  Number(this.pf) -  Number(this.pt)  -  Number(this.esic);
@@ -251,11 +248,18 @@ this.bind();
       }
       if (this.selectedValueEmployee == this.filteredEmployeeList.id)
       
-               return this.salary = this.filteredEmployeeList.basic_salary;
+               return this.filteredEmployeeSalary.salary;
 
-                       
-            //   });
-        
+               this.filteredEmployeeSalary[index]["salary"] = this.filteredEmployeeList[index]["basic_salary"] + this.filteredEmployeeList[index]["hra_amount"] 
+               + this.filteredEmployeeList[index]["conveyance"] - this.filteredEmployeeList[index]["pf"] -   this.filteredEmployeeList[index]["pt"] -
+              -  this.filteredEmployeeList[index]["esic"];
+              //  +  this.filteredEmployeeList[index]["conveyance"]  -  this.filteredEmployeeList[index]["pf"] -   this.filteredEmployeeList[index]["pt"] -
+              //  +  this.filteredEmployeeList[index]["esic"];
+console.log(this.salary);
+              //  this.filteredEmployeeList.forEach(this.filteredEmployeeList => {
+                         this.salary = this.filteredEmployeeSalary.salary;
+    }
+   } );      
             // this.api.get("employee_details/list").subscribe((result: any) => {
             //   this.filteredEmployeeList = result.data;
             //   this.filteredEmployeeList = this.filteredEmployeeList.filter((filteredEmployeeList: any) => {
@@ -263,20 +267,20 @@ this.bind();
             //     if (this.selectedValueEmployee == filteredEmployeeList.id)
       
             //     return this.salary = filteredEmployeeList.basic_salary;
-
+     
                        
-            //   });
+    
         
               console.log(this.filteredEmployeeList);
-          
+    
         
-              this.filteredEmployeeList = result;
-              console.log(result);
-              //this.show = !this.show;
+             // this.filteredEmployeeList = result;
+              //console.log(result);
+              //this.show = !this.show; });
     }
-            });
+            //});
         
-    }
+
      
   // onOptionsSelected() {
   //   debugger

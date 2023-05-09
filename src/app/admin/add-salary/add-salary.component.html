@@ -32,9 +32,9 @@
             <div class="row">
               
                 <div class="col-md-6">
-                  <div class="form-group row">
+                  <div class="form-group row" *ngFor="let salary of filteredEmployeeList;let i = index;">
                     <label class="col-sm-3 col-form-label">Employee</label>
-                    <div class="col-sm-9"*ngFor="let employee_detail of filteredEmployeeList; let i = index;">
+                    <div class="col-sm-9">
                   <!-- <select class="form-control" formControlName="employee_details_id" (change)='onEmployeeSelected()'
                       [(ngModel)]="selectedValueEmployee">
                         <option value="">Choose Employee</option> -->
@@ -42,11 +42,12 @@
                         <!--<option *ngFor="let employee_detail of filteredEmployeeList;"  value="{{ employee_detail.id }}">{{ employee_detail.name }}</option>
                         </select> -->
 
-                        <select class="form-control" (change)="onEmployeeSelected(i,'employee_details_id', $event)"  [(ngModel)]="selectedValueEmployee" formControlName="employee_details_id">
+                        <select class="form-control" (change)="onEmployeeSelected(i, 'employee_details_id', $event)"  [(ngModel)]="selectedValueEmployee" formControlName="employee_details_id">
                           <option value="">Choose Employee</option>
                          
                           <option *ngFor="let employee_detail of filteredEmployeeList"  value="{{ employee_detail.id }}">{{ employee_detail.name }}</option>
                           </select>
+                          
                     </div>
                   </div>
                 
@@ -113,12 +114,12 @@
                   <label class="col-sm-3 col-form-label">Salary<span class="text-danger">*</span></label>
                 
                   <div class="col-sm-6">
-                    <input type="text"  class="form-control" formControlName="salary"  value="{{basic_salary }}"
-                    placeholder="Enter Basic Salary" />  
+                    <!-- <input type="text"  class="form-control" (change)="onEmployeeSelected(i, 'quantity', $event)"> formControlName="salary"
+                    placeholder="Enter Basic Salary" />   -->
                   <!--<input type="text"  class="form-control" formControlName="salary"  value="{{ total_salary()}}" [(ngModel)]="salary"
-                    placeholder="Enter Basic Salary" />               
-                                         <input type="text"  class="form-control" formControlName="salary"  value="{{ basic_salary}}" [(ngModel)]="basic_salary"
-                    placeholder="Enter Basic Salary" /> -->
+                    placeholder="Enter Basic Salary" />   -->            
+                                        <input type="text"  class="form-control" formControlName="salary"  value="{{salary}}" [(ngModel)]="salary"
+                    placeholder="Enter Basic Salary" />
                   </div>
                 </div>
               </div>
