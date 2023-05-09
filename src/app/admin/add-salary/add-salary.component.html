@@ -34,7 +34,7 @@
                 <div class="col-md-6">
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Employee</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-9"*ngFor="let employee_detail of filteredEmployeeList; let i = index;">
                   <!-- <select class="form-control" formControlName="employee_details_id" (change)='onEmployeeSelected()'
                       [(ngModel)]="selectedValueEmployee">
                         <option value="">Choose Employee</option> -->
@@ -42,10 +42,10 @@
                         <!--<option *ngFor="let employee_detail of filteredEmployeeList;"  value="{{ employee_detail.id }}">{{ employee_detail.name }}</option>
                         </select> -->
 
-                        <select class="form-control" (change)='onEmployeeSelected()'  [(ngModel)]="selectedValueEmployee" formControlName="employee_details_id" (change)='onEmployeeSelected()' >
+                        <select class="form-control" (change)="onEmployeeSelected(i,'employee_details_id', $event)"  [(ngModel)]="selectedValueEmployee" formControlName="employee_details_id">
                           <option value="">Choose Employee</option>
                          
-                          <option *ngFor="let employee_detail of filteredEmployeeList;"  value="{{ employee_detail.id }}">{{ employee_detail.name }}</option>
+                          <option *ngFor="let employee_detail of filteredEmployeeList"  value="{{ employee_detail.id }}">{{ employee_detail.name }}</option>
                           </select>
                     </div>
                   </div>
