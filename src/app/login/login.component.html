@@ -15,8 +15,7 @@
               <span class="text-danger">{{ message }}</span>
 
               <div class="form-group">
-                <!-- <input type="email" class="form-control form-control-lg" formControlName="email" placeholder=" Please Enter Valid Email"> -->
-                <!-- <input type="email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" [ngClass]="{'is-invalid': formdata.controls.email.errors && (formdata.controls.email.touched || formdata.controls.email.dirty), 'is-valid':formdata.controls.email.valid}"class="form-control" formControlName="email" placeholder="Enter a Valid Email" required/> -->
+               
                 <input [ngClass]="{'is-invalid': formdata.controls.email.errors && (formdata.controls.email.touched || formdata.controls.email.dirty), 'is-valid':formdata.controls.email.valid}" type="email"
                   class="form-control" formControlName="email" />
                 <div
@@ -28,7 +27,6 @@
 
               </div>
               <div class="form-group">
-                <!-- <input type="password" [ngClass]="{'is-invalid': formdata.controls.password.errors && (formdata.controls.password.touched || formdata.controls.password.dirty), 'is-valid':formdata.controls.password.valid}"class="form-control" formControlName="password" placeholder="Enter Valid Password." required/> -->
                 <input [ngClass]="{'is-invalid': formdata.controls.password.errors && (formdata.controls.password.touched || formdata.controls.password.dirty), 'is-valid':formdata.controls.password.valid}"
                   type="password" class="form-control" formControlName="password" />
                 <div

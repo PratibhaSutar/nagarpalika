@@ -13,6 +13,8 @@ export class AddEmployeeDetailsComponent implements OnInit {
   formdata: any;
   categories: any;
 employeedetail:any;
+clicked = false;
+
 
 // basic_salary:number=0;
 // hra:string = '';
@@ -59,11 +61,10 @@ ngOnInit(): void {
   //     });
   //   }
   onClickSubmit(data:any){
-    
     this.api.put("employee_details/save", data).subscribe((result:any)=>{
       console.log(result);
     //console.log(result.data);
-    this.router.navigate(['/admin/employee-details']);
+    //this.router.navigate(['/admin/employee-details']);
   });
     
     }

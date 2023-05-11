@@ -23,13 +23,12 @@ export class AddAttendenceComponent implements OnInit {
   startdate: any;
   enddate: any;
   filteredAttendence: any;
-
   show:boolean = false;
   totalLength: any;
   page: number = 1;
   selectedValue: any;
   filteredEmployeeList: any;
-  
+  clicked = false;
   constructor(private api: ApiService, private route: ActivatedRoute) {
   }
   ngOnInit(): void {
@@ -96,7 +95,9 @@ debugger
 
         if (this.selectedValue == filteredEmployeeList.category_id)
 
-          return filteredEmployeeList;        
+          return filteredEmployeeList;   
+          this.clicked = true;
+     
       });
 
       console.log(this.filteredEmployeeList);
@@ -114,7 +115,7 @@ debugger
       //   else
       //   return false;
       //     })
-
+     
       this.filteredAttendence = result;
       console.log(result);
       this.show = !this.show;
@@ -144,9 +145,9 @@ debugger
 
 
 
-
+     
   //}
-
+ 
   onClickSubmit(data: any) {
   console.log(this.filteredEmployeeList);
    for(let i = 0; i < this.filteredEmployeeList.length;i++){
@@ -154,6 +155,7 @@ debugger
   this.api.put("attendences/save", this.filteredEmployeeList[i]).subscribe((result: any) => {
     // this.api.put("attendences/save",data).subscribe((result: any) => {   
   console.log(result.data);
+  this.clicked = false;
   window.location.replace("/admin/attendence");
 
   });

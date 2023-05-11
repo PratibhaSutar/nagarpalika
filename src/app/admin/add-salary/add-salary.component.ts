@@ -233,14 +233,14 @@ this.bind();
       debugger
       this.api.get("employee_details/list").subscribe((result: any) => {
          this.filteredEmployeeList = result.data;
-        this.filteredEmployeeList[index][key] = event.target.value;
-        this.salary = Number(this.basic_salary) + Number(this.hra_amount) + Number(this.conveyance)
-        -  Number(this.pf) -  Number(this.pt)  -  Number(this.esic);
+        // this.filteredEmployeeList[index][key] = event.target.value;
+        // this.salary = Number(this.basic_salary) + Number(this.hra_amount) + Number(this.conveyance)
+        // -  Number(this.pf) -  Number(this.pt)  -  Number(this.esic);
     
         let basic_salary = 0, hra_amount = 0 , conveyance = 0;
 
     if(key == "employee_details_id"){
-      for(let i = 0; i < this.filteredEmployeeList.length; i++){
+      for(let i = 0; i < this.filteredEmployeeList[i].length; i++){
         if(this.filteredEmployeeList[i].id === event.target.value)
         basic_salary = parseFloat(this.filteredEmployeeList[i].basic_salary);
         hra_amount = parseFloat(this.filteredEmployeeList[i].hra_amount);
@@ -253,10 +253,9 @@ this.bind();
                this.filteredEmployeeSalary[index]["salary"] = this.filteredEmployeeList[index]["basic_salary"] + this.filteredEmployeeList[index]["hra_amount"] 
                + this.filteredEmployeeList[index]["conveyance"] - this.filteredEmployeeList[index]["pf"] -   this.filteredEmployeeList[index]["pt"] -
               -  this.filteredEmployeeList[index]["esic"];
-              //  +  this.filteredEmployeeList[index]["conveyance"]  -  this.filteredEmployeeList[index]["pf"] -   this.filteredEmployeeList[index]["pt"] -
-              //  +  this.filteredEmployeeList[index]["esic"];
-console.log(this.salary);
-              //  this.filteredEmployeeList.forEach(this.filteredEmployeeList => {
+             
+                          console.log(this.salary);
+          
                          this.salary = this.filteredEmployeeSalary.salary;
     }
    } );      
