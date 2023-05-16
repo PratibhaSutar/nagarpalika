@@ -83,7 +83,7 @@ export class AddAttendenceComponent implements OnInit {
       // present:new FormControl("", Validators.required),
     });
   }
-  onOptionsSelected() {
+  onEmployeeSelected() {
 debugger
     this.api.get("employee_details/list").subscribe((result: any) => {
       this.filteredEmployeeList = result.data;

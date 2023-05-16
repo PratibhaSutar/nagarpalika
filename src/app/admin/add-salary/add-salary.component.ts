@@ -100,15 +100,16 @@ details = new Array();
 
 gross_salary: number = 0;
 salary: any;
-hra_amount: number = 1000;
-conveyance: number = 500;
-esic: number = 200;
+hra_amount: number = 0;
+conveyance: number = 0;
+esic: number = 0;
 pf: number = 0;
 pt: number = 200;
 pt1: number = 175;
-basic_salary: number = 25000;
+basic_salary: number = 0;
 outstanding_amount: number = 0;
   ot: number = 0;
+
   total_pf_amount() {
     this.pf = Number(this.basic_salary) * 12 / 100;
   }

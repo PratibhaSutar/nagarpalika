@@ -9,7 +9,7 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">Category</label>
             <div class="col-sm-9">
-              <select #mySelect class="form-control" formControlName="category_id" (change)='onOptionsSelected()' [(ngModel)]="selectedValue">
+              <select #mySelect class="form-control" formControlName="category_id" (change)='onEmployeeSelected()' [(ngModel)]="selectedValue">
 
                               <!-- <select #mySelect class="form-control" formControlName="category_id" (change)='onOptionsSelected()' -->
 
@@ -31,7 +31,7 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label"></label>
             <div class="col-sm-9">
-              <input type="button" class="form-control" name="search" value="Search" (click)="onOptionsSelected()"/>
+              <input type="button" class="form-control" name="search" value="Search" (click)="onEmployeeSelected()"/>
             
             </div>
           </div>
