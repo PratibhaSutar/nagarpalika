@@ -88,41 +88,12 @@ formdata:any;
 categories:any;
 employee_details:any;
 addsalary:any;
-employee_details_id:any;
 filteredEmployeeList:any;
 filteredEmployeeSalary:any;
 filteredSalary:any;
 selectedValueCategory:any;
 selectedValueEmployee:any;
 
-details = new Array();
-
-
-gross_salary: number = 0;
-salary: any;
-hra_amount: number = 0;
-conveyance: number = 0;
-esic: number = 0;
-pf: number = 0;
-pt: number = 200;
-pt1: number = 175;
-basic_salary: number = 0;
-outstanding_amount: number = 0;
-  ot: number = 0;
-
-  total_pf_amount() {
-    this.pf = Number(this.basic_salary) * 12 / 100;
-  }
-  total_esic_amount() {
-    this.gross_salary = Number(this.basic_salary) + Number(this.hra_amount) + Number(this.conveyance) + Number(this.ot);
-
-    this.esic = Number(this.gross_salary) / 100 * 0.75;
-  }
-  total_salary() {
-    this.salary = Number(this.basic_salary) + Number(this.hra_amount) + Number(this.conveyance)
-    -  Number(this.pf) -  Number(this.pt)  -  Number(this.esic);
-
-  }
 constructor(private api:ApiService, private route:ActivatedRoute) {}
 
 ngOnInit(): void {
@@ -134,12 +105,6 @@ ngOnInit(): void {
     this.categories = result.data;
 
   });
-
-// this.api.get("employee_details/list").subscribe((result:any)=>{
-//   console.log(result);
-//   this.employee_details = result.data;
-
-//   });
 
   if(this.id != null){
 this.api.get("salary/list").subscribe((result:any)=>{
@@ -153,8 +118,6 @@ this.bind();
   }
    
   }
-
-  
 
   bind(){
     debugger
@@ -196,8 +159,6 @@ this.bind();
           });
     
           console.log(this.filteredEmployeeList);
-      
-    
           this.filteredSalary = result;
           console.log(result);
           //this.show = !this.show;
@@ -206,113 +167,11 @@ this.bind();
     
       }
 
-    //  onEmployeeSelected(index:number, key:string, event:any){
-    //     this.details[index][key] = event.target.value;
-
-    //     let hra_amount = 0; 
-    //   var conveyance = 0;
-    //     if(key == "employee_details_id"){
-    //       for(let i = 0; i < this.filteredEmployeeList.length; i++){
-    //         if(this.filteredEmployeeList[i].id === event.target.value)
-    //           this.basic_salary = parseFloat(this.filteredEmployeeList[i].basic_salary);
-    //           this.hra_amount = parseFloat(this.filteredEmployeeList[i].hra_amount);
-    //           this.conveyance = parseFloat(this.filteredEmployeeList[i].conveyance);
-
-    //       }
-    //       this.salary = this.basic_salary * hra_amount + this.conveyance;
-    //       console.log(this.basic_salary);
-    //     }
-    //     this.details[index]["salary"] = this.details[index]["basic_salary"] + this.details[index]["hra_amount"] 
-    //     + this.details[index]["conveyance"];
-    //     this.salary = 0;
-    //     this.details.forEach(detail => {
-    //       this.salary += detail.total;
-    //     });
-    //   }
-
-     onEmployeeSelected(index:number, key:string, event:any) {
-      debugger
-      this.api.get("employee_details/list").subscribe((result: any) => {
-         this.filteredEmployeeList = result.data;
-        // this.filteredEmployeeList[index][key] = event.target.value;
-        // this.salary = Number(this.basic_salary) + Number(this.hra_amount) + Number(this.conveyance)
-        // -  Number(this.pf) -  Number(this.pt)  -  Number(this.esic);
     
-        let basic_salary = 0, hra_amount = 0 , conveyance = 0;
-
-    if(key == "employee_details_id"){
-      for(let i = 0; i < this.filteredEmployeeList[i].length; i++){
-        if(this.filteredEmployeeList[i].id === event.target.value)
-        basic_salary = parseFloat(this.filteredEmployeeList[i].basic_salary);
-        hra_amount = parseFloat(this.filteredEmployeeList[i].hra_amount);
-        conveyance = parseFloat(this.filteredEmployeeList[i].conveyance);
-      }
-      if (this.selectedValueEmployee == this.filteredEmployeeList.id)
-      
-               return this.filteredEmployeeSalary.salary;
-
-               this.filteredEmployeeSalary[index]["salary"] = this.filteredEmployeeList[index]["basic_salary"] + this.filteredEmployeeList[index]["hra_amount"] 
-               + this.filteredEmployeeList[index]["conveyance"] - this.filteredEmployeeList[index]["pf"] -   this.filteredEmployeeList[index]["pt"] -
-              -  this.filteredEmployeeList[index]["esic"];
-             
-                          console.log(this.salary);
-          
-                         this.salary = this.filteredEmployeeSalary.salary;
-    }
-   } );      
-            // this.api.get("employee_details/list").subscribe((result: any) => {
-            //   this.filteredEmployeeList = result.data;
-            //   this.filteredEmployeeList = this.filteredEmployeeList.filter((filteredEmployeeList: any) => {
-               
-            //     if (this.selectedValueEmployee == filteredEmployeeList.id)
-      
-            //     return this.salary = filteredEmployeeList.basic_salary;
+     onEmployeeSelected() {
      
-                       
-    
-        
-              console.log(this.filteredEmployeeList);
-    
-        
-             // this.filteredEmployeeList = result;
-              //console.log(result);
-              //this.show = !this.show; });
     }
-            //});
-        
-
-     
-  // onOptionsSelected() {
-  //   debugger
-  //   this.api.get("employee_details/list").subscribe((result: any) => {
-  //     this.employee_details = result.data;
-  //     this.employee_details = this.employee_details.filter((employee_details: any) => {
-      
-  //       if (this.selectedValue == employee_details.category_id )
-        
-  //         return employee_details;  
-          
-        
-         
-  //     });
-  //     console.log(this.employee_details);
-  //     this.filteredSalary = result;
-  //     console.log(result);
-
-  //       // let startDate = +new Date(this.startdate);
-  //       // let endDate = +new Date(this.enddate);
-  //       // var result = this.addattendence.filter((data: any) => {
-  //       //   return + new Date(data.date) >= startDate && +new Date(data.date) <= endDate;
-  //       // })
-  //       // this.filteredAttendence = result;
-  //       // console.log(result);
-  //       // this.show = !this.show;
-  //   });
-  // }
-
-
-
-  
+            
 onClickSubmit(data:any){
 
   this.api.put("salary/save", data).subscribe((result:any)=>{
