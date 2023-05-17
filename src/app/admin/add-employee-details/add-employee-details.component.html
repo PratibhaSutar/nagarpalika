@@ -15,12 +15,7 @@
                 <option value="">Select Category</option>
                 <option *ngFor="let category of categories;" value="{{category.id}}">{{ category.name }}</option>
               </select>
-              <!-- <div
-              *ngIf="(formdata.controls.category_id.invalid && formdata.controls.category_id.touched) || formdata.controls.category_id.dirty">
-              <small *ngIf="formdata.controls.category_id.errors?.required" class="text-danger">P</small>
-              <small *ngIf="formdata.controls.category_id.errors?.pattern" class="text-danger">Invalid Name
-      </small>
-            </div> -->
+             
             </div>
           </div>
         </div>

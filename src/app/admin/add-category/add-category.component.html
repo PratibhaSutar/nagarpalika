@@ -13,9 +13,6 @@
                     <label class="col-sm-3 col-form-label">Name<span class="text-danger">*</span></label>
                     <div class="col-sm-9">
                       <input type="text" ng-pattern="^[a-zA-Z \-\']+" [ngClass]="{'is-invalid': formdata.controls.name.errors && (formdata.controls.name.touched || formdata.controls.name.dirty), 'is-valid':formdata.controls.name.valid}"class="form-control" formControlName="name" placeholder="Category Name is Required." required/>
-                      <!-- <span *ngIf="!formdata.controls.name.valid && formdata.controls.name.touched"
-              class="text-danger">Category Name is Required.</span> -->
-              
                     </div>
                     
                   </div>
@@ -23,7 +20,6 @@
               
               </div>
            
-             
                <div class="text-center">
 
         <button type="submit" [disabled]="!formdata.valid" class="btn btn-gradient-primary btn-icon-text">

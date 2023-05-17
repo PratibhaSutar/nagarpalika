@@ -30,21 +30,12 @@ export class LoginComponent implements OnInit {
   onClickSubmit(data: any) {
     console.log(data);
     this.api.post("admin/login", data).subscribe((result:any)=>{
-      console.log(result);
      
-      if(result.status == "failed")
-      {
-this.message = result.data;   
-}
-else{
-  localStorage.setItem("usertype", "admin");
-    localStorage.setItem("email", result.data.email);
     window.location.href = "/admin/dashboard";
 
-  // this.api.put("admin/save", data).subscribe((result:any)=>{
+ this.api.put("admin/save", data).subscribe((result:any)=>{
   //   console.log(result);
-}
-   
+
 });
-  }
-}
+});
+}}

@@ -23,11 +23,6 @@
         </div>
       </div>
 
-      <!-- <div class="col-lg-4">
-        <div class="form-group">
-         
-        </div>
-      </div> -->
     </div>
     <form [formGroup]="formdata" >
 
@@ -47,7 +42,6 @@
       </div>
       <div class="col-lg-4">
         <div class="form-group">
-          <!-- <input type="button" class="form-control" name="search" value="Search" (click)="onDateSelected()"> -->
           <button class="form-control"  (click)="onDateSelected()">
             <i class="bi bi-search"></i> Search
 </button>
@@ -76,11 +70,6 @@
             <th scope="col">Name</th>
             <th scope="col">Present</th>
             <th scope="col">Total Present Days</th>
-            <th scope="col">Absent</th>
-            <th scope="col">Total Absent Days</th>
-            
-
-
           </tr>
         </thead>
         <tbody>
@@ -95,26 +84,7 @@
 
             <td>{{ attendence.present }}</td>
             <td>{{ attendence.presentCount }}</td>
-            <td>{{ attendence.absent }}</td>
-            <td>{{ attendence.absentCount }}</td>
-
-            <!-- <td> <span class="mr-3"><a routerLink="/admin/add-attendence/{{ attendence.id }}"
-                  (click)="edit(attendence.id)"><span id="boot-icon" class="bi bi-pencil-square bi-hover-bold"
-                    style="color: rgb(0, 0, 0);"></span></a></span>
-
-
-
-              <span><a routerLink="/admin/attendence/{{ attendence.id }}" (click)="delete(attendence.id)"><span
-                    id="boot-icon" class="bi bi-trash bi-hover-bold" style="color: rgb(255, 0, 0);"></span></a></span>
-            </td> -->
-         <!-- </tr> -->
-           <!-- <tr >  
-            <td colspan="2"></td>  
-            <td colspan="1"><b>Total Present:</b> </td>  
-            <td colspan="1"><b>Total Absent:</b> </td>  
-
-            <td colspan="1" ><b>{{present}}</b> </td>  
-          </tr>  -->
+           
        </tbody>
       </table>
       <pagination-controls (pageChange)="page = $event"></pagination-controls>

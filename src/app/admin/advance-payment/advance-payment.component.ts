@@ -16,10 +16,7 @@ constructor(private api:ApiService){
 
 }
 ngOnInit(): void {
-  // this.api.get("attendences/list").subscribe((result:any)=>{
-  //   console.log(result);
-  //  this.attendences = result.data;
-  // })
+ 
   this.bind();
   
 }

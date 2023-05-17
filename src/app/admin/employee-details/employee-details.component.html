@@ -4,39 +4,19 @@
 <div class="template-demo text-right">
       <a routerLink="/admin/add-employee-details">
          <button type="button" class=" mb-2 btn btn-gradient-primary btn-icon-text">
-        <!-- <i class="mdi mdi-file-check btn-icon-prepend"></i> -->
         + Employee
       </button></a>
-      <!-- <a routerLink="/admin/add-employee-details">
-        <button type="button" class="ml-2 mb-2 btn btn-gradient-primary btn-icon-text">
-     <i class="mdi mdi-file-check btn-icon-prepend"></i>  
-       + Add Employee
-     </button></a> -->
     </div>
     </div>
    <div class="panel-body">
         <div class="col-lg-12 row mt-5">
-            <!-- <div class="col-lg-3">
-                <div class="form-group">
-                    <input type="text" class="form-control" name="search" placeholder="Search by id">
-                </div>
-            </div> -->
             <div class="col-lg-4">
                 <div class="form-group">
                     <input type="text" class="form-control" name="search" [(ngModel)]="searchText" placeholder="Search By Employee Name">
                 </div>
             </div>
-            
-            <!-- <div class="col-lg-3">
-                <div class="form-group">
-                    <input type="text" class="form-control"  name="search" placeholder="Search by category">
-                </div>
-            </div> -->
-        
-    </div>		
-
     </div>
-
+    </div>
 
     </div>
            <hr/>
@@ -74,7 +54,6 @@
                   };
                    let i = index;">
                     <td>{{ (i + 1) }}</td>
-                    <!-- <td>{{  employeedetail.id }}</td> -->
                   <td>{{  employeedetail.name }}</td>
                   <td>{{  employeedetail.mobile_no }}</td>
                   <td>{{  employeedetail.bank_acno }}</td>
@@ -86,14 +65,9 @@
                   <td>{{  employeedetail.conveyance }}</td>
                   <td>{{  employeedetail.address }}</td>
                    <td> <span class="mr-3"><a (click)="edit(employeedetail.id)" routerLink="/admin/add-employee-details/{{employeedetail.id}}" ><span id="boot-icon" class="bi bi-pencil-square bi-hover-bold"  style="color: rgb(0, 0, 0);"></span></a></span>
-                
-                            
-                    <span><a (click)="delete(employeedetail.id)" routerLink="/admin/employee-details/{{employeedetail.id}}"><span id="boot-icon" class="bi bi-trash bi-hover-bold" style="color: rgb(255, 0, 0);"></span></a></span></td>
-
+                  <span><a (click)="delete(employeedetail.id)" routerLink="/admin/employee-details/{{employeedetail.id}}"><span id="boot-icon" class="bi bi-trash bi-hover-bold" style="color: rgb(255, 0, 0);"></span></a></span></td>
                    
                 </tr>
-                  
-               
                 <tr>
 
               </tbody>

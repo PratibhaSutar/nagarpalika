@@ -33,14 +33,10 @@ ngOnInit(): void {
     this.categories = result.data;
   });
 
-
-  
-
   if(this.id != null) {
     this.api.get("employee_details/list").subscribe((result: any) => {
       
       this.employeedetail = result.data;
-      //console.log(result);
       this.bind();
     });
 
@@ -48,23 +44,13 @@ ngOnInit(): void {
   else {
 
     this.bind();
-  }
-
-  
+  }  
 }
-
-
-  // getfromcategory(category_id: string){
-  //   this.api.get("employee_details/list/" + category_id).subscribe((result: any) => {
-  //     console.log(result);
-  //     this.employeedetails = result.data;
-  //     });
-  //   }
   onClickSubmit(data:any){
     this.api.put("employee_details/save", data).subscribe((result:any)=>{
       console.log(result);
     //console.log(result.data);
-    //this.router.navigate(['/admin/employee-details']);
+    this.router.navigate(['/admin/employee-details']);
   });
     
     }
