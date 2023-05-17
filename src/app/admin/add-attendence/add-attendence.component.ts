@@ -34,25 +34,13 @@ export class AddAttendenceComponent implements OnInit {
   ngOnInit(): void {
     this.bind();
     this.id = this.route.snapshot.paramMap.get("id");
-    //alert(this.id);
     window.scroll(0, 0);
     this.api.get("category/list").subscribe((result: any) => {
       this.categories = result.data;
 
     });
 
-    //   this.api.get("employee_details/list").subscribe((result: any) => {
-    //     this.employee_details = result.data;
-    //     this.filteredEmployeeList = result.data;
-    //     console.log(this.filteredEmployeeList);
-    //     this.filteredEmployeeList = this.filteredEmployeeList.filter((filteredEmployeeList: any) => {
-    //       if (filteredEmployeeList.category_id && this.selectedValue == '1')
-    //         return true
-    //       else
-    //         return false
-    //     });
-    //  });
-
+   
     if (this.id != null) {
       this.api.get("attendences/list").subscribe((result: any) => {
         console.log(result);
@@ -79,8 +67,7 @@ export class AddAttendenceComponent implements OnInit {
       startdate: new FormControl((new Date()).toISOString().substring(0, 10)),
       present: new FormControl(this.addattendence != null ? this.addattendence.present : "", Validators.required),
       absent: new FormControl(this.addattendence != null ? this.addattendence.absent : "", Validators.required),
-      // absent:new FormControl("", Validators.required),
-      // present:new FormControl("", Validators.required),
+      
     });
   }
   onEmployeeSelected() {
@@ -101,21 +88,6 @@ debugger
       });
 
       console.log(this.filteredEmployeeList);
-      
-    //let startDate = +new Date(this.startdate);
-      // let endDate = +new Date(this.enddate);
-      //var result = this.addattendence.filter((data: any) => {
-        // return + new Date(data.date) >= startDate && +new Date(data.date) <= endDate;
-                //return + new Date(data.startdate) >= startDate ;
-
-      //})
-      // this.filteredAttendence =this.filteredEmployeeList.filter((filteredEmployeeList:any)=>{
-      //   if(this.filteredEmployeeList == "1")
-      //   return true;
-      //   else
-      //   return false;
-      //     })
-     
       this.filteredAttendence = result;
       console.log(result);
       this.show = !this.show;
@@ -123,31 +95,7 @@ debugger
     });
 
   }
-  // tableShow() {
 
-  //   this.isShown = ! this.isShown;
-    
-  //   }
-  
-// onDateSelected(){
-//   this.date = Date.now();
-// }
-//   // onDateSelected() {
-
-  //   let startDate = +new Date(this.startdate);
-  //     let endDate = +new Date(this.enddate);
-  //     let result = this.addattendence.filter((data: any) => {
-  //       return + new Date(data.date) >= startDate && +new Date(data.date) <= endDate;
-  //    })
-  //      this.filteredAttendence = result;
-  //    console.log(result);
-  //   }
-
-
-
-     
-  //}
- 
   onClickSubmit(data: any) {
   console.log(this.filteredEmployeeList);
    for(let i = 0; i < this.filteredEmployeeList.length;i++){

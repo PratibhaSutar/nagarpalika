@@ -10,9 +10,6 @@
             <label class="col-sm-3 col-form-label">Category</label>
             <div class="col-sm-9">
               <select #mySelect class="form-control" formControlName="category_id" (change)='onEmployeeSelected()' [(ngModel)]="selectedValue">
-
-                              <!-- <select #mySelect class="form-control" formControlName="category_id" (change)='onOptionsSelected()' -->
-
                 <option value="">Choose Category</option>
                 <option [value]="category.id" *ngFor="let category of categories;">{{category.name }}</option>
               </select>
